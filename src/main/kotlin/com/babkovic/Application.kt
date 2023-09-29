@@ -1,15 +1,24 @@
 package com.babkovic
 
-import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.SpringBootConfiguration
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.boot.runApplication
-import org.springframework.context.ConfigurableApplicationContext
+import org.springframework.context.annotation.ComponentScan
 
-@SpringBootApplication
-class Application
+@EnableAutoConfiguration
+@SpringBootConfiguration
+@ComponentScan("com.babkovic")
+class Application {
 
-fun main(args: Array<String>) {
-    val ctx: ConfigurableApplicationContext = runApplication<Application>(*args)
-    for (bean: String in ctx.beanDefinitionNames) {
-        println(bean)
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            runApplication<Application>(*args)
+//    for (bean: String in ctx.beanDefinitionNames) {
+//        println(bean)
+//    }
+
+        }
     }
+
 }

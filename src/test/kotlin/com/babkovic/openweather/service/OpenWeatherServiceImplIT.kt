@@ -1,0 +1,3 @@
+package com.babkovic.openweather.service
+
+class OpenWeatherServiceImplIT

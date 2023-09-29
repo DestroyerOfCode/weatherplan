@@ -1,4 +1,4 @@
-package com.babkovic.common.controller
+package com.babkovic.health.controller
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController

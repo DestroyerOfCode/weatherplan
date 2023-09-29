@@ -1,19 +1,22 @@
 [versions]
-org-springframework-boot = "3.1.4"
+org-springframework-boot = "3.2.0-M3"
 org-springdoc = "2.2.0"
 org-modelmapper = "3.1.1"
 org-slf4j = "2.0.6"
 org-yaml = "2.2"
 org-junit-jupiter = "5.10.0"
 org-mockito = "5.0.0"
-spring-test = "6.0.12"
+spring-test = "6.1.0-M5"
 
 [libraries]
+spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "org-springframework-boot" }
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "org-springframework-boot" }
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "org-springframework-boot" }
+spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "org-springframework-boot" }
+spring-boot-starter-data-mongodb-reactive = { group = "org.springframework.boot", name = "spring-boot-starter-data-mongodb-reactive", version.ref = "org-springframework-boot" }
 springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "org-springdoc" }
 modelmapper = { group = "org.modelmapper", name = "modelmapper", version.ref = "org-modelmapper" }
-org-yaml = { group = "org.yaml", name = "snakeyaml", version.ref = "org-yaml"}
+org-yaml = { group = "org.yaml", name = "snakeyaml", version.ref = "org-yaml" }
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "org-slf4j" }
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "org-junit-jupiter" }
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "org-mockito" }

@@ -1,27 +1,28 @@
 package com.babkovic.common.controller
 
+import com.babkovic.openweather.BaseTest
+import com.babkovic.openweather.controller.OpenWeatherControllerIT
 import org.junit.jupiter.api.Test
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
-import org.springframework.boot.test.web.client.getForEntity
-import org.springframework.http.HttpStatus
-import org.springframework.http.ResponseEntity
-import kotlin.test.assertEquals
+import org.junit.jupiter.api.TestInfo
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class HealthCheckControllerImplIT(
-    @Autowired val restTemplate: TestRestTemplate
-) {
+class HealthCheckControllerImplIT : BaseTest() {
+
+    companion object {
+        private val LOGGER: Logger = LoggerFactory.getLogger(OpenWeatherControllerIT::class.java)
+    }
 
     @Test
-    fun `When calling Healthcheck Endpoint, should return Response Entity ok`() {
-        //given and when
-        val entity: ResponseEntity<String> = restTemplate.getForEntity<String>("/health")
+    fun `When calling Healthcheck Endpoint, should return Response Entity ok`(testInfo: TestInfo) {
+        LOGGER.info("Starting test ${testInfo.displayName}\n")
 
-        //then
-        assertEquals(HttpStatus.OK, entity.statusCode, "Health check is not working!\n")
-        assertEquals("I am okay\n", entity.body, "Health check body is not right!\n")
+        client.get().uri("${BASE_URL}health").exchange().expectStatus().is2xxSuccessful
+            .expectBody(String::class.java)
+            .isEqualTo("I am okay\n")
+            .returnResult()
+
+        LOGGER.info("Ending test ${testInfo.displayName}\n")
 
     }
 }
