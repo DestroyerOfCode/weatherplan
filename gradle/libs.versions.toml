@@ -1,23 +1,49 @@
 [versions]
+#kotlin
+io-projectreactor = "3.5.10"
+io-projectreactor-kotlin = "1.2.2"
+
+#spring
 org-springframework-boot = "3.2.0-M3"
 org-springdoc = "2.2.0"
+
+#business logic
 org-modelmapper = "3.1.1"
 org-slf4j = "2.0.6"
 org-yaml = "2.2"
+
+#testing
 org-junit-jupiter = "5.10.0"
 org-mockito = "5.0.0"
 spring-test = "6.1.0-M5"
+com-fasterxml-jackson-core = "2.15.2"
 
 [libraries]
+#kotlin
+reactor-kotlin-extensions = { group = "io.projectreactor.kotlin", name = "reactor-kotlin-extensions", version.ref = "io-projectreactor-kotlin"}
+
+#spring
 spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter", version.ref = "org-springframework-boot" }
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web", version.ref = "org-springframework-boot" }
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test", version.ref = "org-springframework-boot" }
 spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux", version.ref = "org-springframework-boot" }
 spring-boot-starter-data-mongodb-reactive = { group = "org.springframework.boot", name = "spring-boot-starter-data-mongodb-reactive", version.ref = "org-springframework-boot" }
 springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "org-springdoc" }
+
+#business logic
 modelmapper = { group = "org.modelmapper", name = "modelmapper", version.ref = "org-modelmapper" }
 org-yaml = { group = "org.yaml", name = "snakeyaml", version.ref = "org-yaml" }
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "com-fasterxml-jackson-core"}
+
+#logging
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "org-slf4j" }
+
+#testing
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "org-junit-jupiter" }
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "org-mockito" }
 spring-test = { group = "org.springframework", name = "spring-test", version.ref = "spring-test" }
+reactor-test = { group = "io.projectreactor", name = "reactor-test", version.ref = "io-projectreactor"}
+
+[bundles]
+web-test-bundle = ["junit-jupiter", "mockito", "spring-boot-starter-test", "reactor-test"]
+logging-bundle = ["slf4j-api"]

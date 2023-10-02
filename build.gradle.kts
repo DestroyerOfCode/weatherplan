@@ -22,7 +22,6 @@ repositories {
     maven {
         setUrl("https://repo.spring.io/milestone")
     }
-
 }
 
 dependencies {
@@ -33,26 +32,20 @@ dependencies {
     //business logic
     implementation(libs.modelmapper)
     implementation(libs.org.yaml)
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.15.2")
+    implementation(libs.jackson.databind)
 
     //reactor
-    implementation ("io.projectreactor.kotlin:reactor-kotlin-extensions:1.2.2")
+    implementation(libs.reactor.kotlin.extensions)
 
     //logging
-    implementation(libs.slf4j.api)
+    implementation(libs.bundles.logging.bundle)
 
 //    implementation("ch.qos.logback:logback-classic:1.4.11")
-//    implementation(libs.slf4j.api)
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
 
     //testing
     testImplementation(kotlin("test"))
-    testImplementation(libs.junit.jupiter)
-    testImplementation(libs.mockito)
-    testImplementation(libs.spring.boot.starter.test)
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-    testImplementation("io.projectreactor:reactor-test:3.5.10")
+    testImplementation(libs.bundles.web.test.bundle)
 
 }
 
