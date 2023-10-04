@@ -13,3 +13,6 @@ plugins {
 }
 
 rootProject.name = "weatherplan"
+include("config")
+include("openweather")
+include("homeweather")
