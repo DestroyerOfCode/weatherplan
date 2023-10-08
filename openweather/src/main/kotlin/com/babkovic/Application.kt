@@ -1,24 +1,16 @@
 package com.babkovic
 
-import org.springframework.boot.SpringBootConfiguration
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.ComponentScan
 
-@EnableAutoConfiguration
-@SpringBootConfiguration
-@ComponentScan("com.babkovic")
-class Application {
+@SpringBootApplication(
+    scanBasePackages = ["com.babkovic"]/*,
+    exclude = [WebMvcAutoConfiguration::class]*/
+)
+class Application
 
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            runApplication<Application>(*args)
-//    for (bean: String in ctx.beanDefinitionNames) {
-//        println(bean)
-//    }
-
-        }
-    }
-
+fun main(args: Array<String>) {
+    runApplication<Application>(*args)
 }

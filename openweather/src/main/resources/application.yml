@@ -1,0 +1,4 @@
+spring:
+  web:
+    mvc:
+      enable: false

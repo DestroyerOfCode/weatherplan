@@ -12,10 +12,11 @@ import org.springframework.context.annotation.Configuration
 class CurrentWeatherJacksonConfig {
 
     @Bean
-    fun currentWeatherObjectMapper(@Qualifier("objectMapper") initialObjectMapper: ObjectMapper): ObjectMapper {
-        registerCurrentWeather(initialObjectMapper)
+    fun openWeatherObjectMapper(@Qualifier("objectMapper") initialObjectMapper: ObjectMapper): ObjectMapper {
+        val objectMapper = ObjectMapper()
+        registerCurrentWeather(objectMapper)
 
-        return initialObjectMapper
+        return objectMapper
     }
 
     private fun registerCurrentWeather(objectMapper: ObjectMapper) {

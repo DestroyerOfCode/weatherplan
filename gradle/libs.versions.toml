@@ -45,5 +45,5 @@ spring-test = { group = "org.springframework", name = "spring-test", version.ref
 reactor-test = { group = "io.projectreactor", name = "reactor-test", version.ref = "io-projectreactor" }
 
 [bundles]
-web-test-bundle = ["junit-jupiter", "mockito", "spring-boot-starter-test", "reactor-test"]
+web-test-bundle = ["junit-jupiter", "mockito", "spring-test", "spring-boot-starter-test", "reactor-test"]
 logging-bundle = ["slf4j-api"]

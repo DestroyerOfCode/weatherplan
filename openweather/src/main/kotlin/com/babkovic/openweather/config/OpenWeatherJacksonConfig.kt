@@ -12,8 +12,7 @@ import org.springframework.context.annotation.Configuration
 class OpenWeatherJacksonConfig {
 
     @Bean
-    fun openWeatherObjectMapper(@Qualifier("objectMapper") initialObjectMapper: ObjectMapper): ObjectMapper {
-//        val openWeatherObjectMapper = initialObjectMapper.copy()
+    fun currentWeatherObjectMapper(@Qualifier("objectMapper") initialObjectMapper: ObjectMapper): ObjectMapper {
         registerCity(initialObjectMapper)
 
         return initialObjectMapper

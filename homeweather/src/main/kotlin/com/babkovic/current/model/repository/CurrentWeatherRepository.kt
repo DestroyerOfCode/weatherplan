@@ -1,10 +1,11 @@
 package com.babkovic.current.model.repository
 
-//import org.springframework.data.mongodb.repository.Query
-//import org.springframework.data.mongodb.repository.ReactiveMongoRepository
+import com.babkovic.current.model.domain.CurrentWeather
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
+import org.springframework.stereotype.Repository
+import java.util.*
 
 
-//interface CurrentWeatherRepository : ReactiveMongoRepository<CurrentWeather, Int?> {
-//    @Query("{ 'name': ?0 }")
-//    fun findByName(name: String?): Flux<CurrentWeather>?
-//}
+@Repository
+interface CurrentWeatherRepository : ReactiveMongoRepository<CurrentWeather, UUID>

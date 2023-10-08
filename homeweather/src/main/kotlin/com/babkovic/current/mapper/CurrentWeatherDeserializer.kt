@@ -11,6 +11,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 import java.text.ParseException
+import java.util.*
 
 @Component
 class CurrentWeatherDeserializer : JsonDeserializer<CurrentWeather>() {
@@ -23,12 +24,13 @@ class CurrentWeatherDeserializer : JsonDeserializer<CurrentWeather>() {
         try {
             val node: JsonNode = p.codec.readTree(p)
 
+            val id: UUID = UUID.randomUUID()
             val lat: Double = node.get("lat").doubleValue()
             val lon: Double = node.get("lon").doubleValue()
             val timezone: String = node.get("timezone").textValue()
             val current = deserializeCurrent(node)
 
-            return CurrentWeather(lat, lon, timezone, current)
+            return CurrentWeather(id, lat, lon, timezone, current)
         } catch (e: ParseException) {
             LOGGER.error("An error has occurred parsing a node to CurrentWeather", e)
         } catch (e: NullPointerException) {

@@ -29,4 +29,16 @@ class RestClientConfig {
         return restClient
     }
 
+    @Bean(name = ["currentWeatherRestClient"])
+    fun currentWeatherClient(restClientBuilder: RestClient.Builder): RestClient {
+        val componentsBuilder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/open/current")
+
+        val restClient = restClientBuilder.uriBuilderFactory(
+            DefaultUriBuilderFactory(componentsBuilder)
+        )
+            .build()
+
+        return restClient
+    }
+
 }

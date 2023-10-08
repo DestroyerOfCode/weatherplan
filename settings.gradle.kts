@@ -4,6 +4,9 @@ pluginManagement {
         maven {
             setUrl("https://repo.spring.io/milestone")
         }
+        maven {
+            setUrl("https://repo1.maven.org/maven2/")
+        }
         gradlePluginPortal()
     }
 }

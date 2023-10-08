@@ -9,7 +9,6 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RestController
-
 class OpenWeatherControllerImpl(@Autowired private val service: OpenWeatherService) : OpenWeatherController {
 
     override fun getCurrentWeatherFromOpenWeatherByCityIds(): Flux<CurrentWeather> {
