@@ -4,9 +4,14 @@ import com.babkovic.config.Constants.Companion.APP_ID
 import com.babkovic.config.Constants.Companion.OPEN_WEATHER_URL
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.MediaType
+import org.springframework.http.MediaType.APPLICATION_NDJSON
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
 import org.springframework.web.client.RestClient
 import org.springframework.web.util.DefaultUriBuilderFactory
 import org.springframework.web.util.UriComponentsBuilder
+import java.util.*
+import java.util.Collections.singletonList
 
 @Configuration
 class RestClientConfig {
@@ -36,6 +41,15 @@ class RestClientConfig {
         val restClient = restClientBuilder.uriBuilderFactory(
             DefaultUriBuilderFactory(componentsBuilder)
         )
+            .messageConverters {
+                arrayOf(
+                    MappingJackson2HttpMessageConverter().setSupportedMediaTypes(
+                        singletonList(
+                            APPLICATION_NDJSON
+                        )
+                    )
+                )
+            }
             .build()
 
         return restClient

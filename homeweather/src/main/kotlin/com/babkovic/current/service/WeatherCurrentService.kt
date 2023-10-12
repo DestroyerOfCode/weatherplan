@@ -8,4 +8,5 @@ interface WeatherCurrentService {
 
     fun fetchCurrentWeather(): Flux<CurrentWeather>
     fun fetchCurrentWeather(lat: Double, lon: Double): Mono<CurrentWeather>
+    fun saveCurrentWeather(lat: Double, lon: Double)
 }

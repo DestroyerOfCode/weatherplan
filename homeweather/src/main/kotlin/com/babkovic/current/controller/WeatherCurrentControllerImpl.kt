@@ -16,4 +16,8 @@ class WeatherCurrentControllerImpl(@Autowired private val service: WeatherCurren
     override fun fetchCurrentWeather(lat: Double, lon: Double): Mono<CurrentWeather> {
         return service.fetchCurrentWeather(lat, lon)
     }
+
+    override fun saveCurrentWeather(lat: Double, lon: Double) {
+        service.saveCurrentWeather(lat, lon)
+    }
 }

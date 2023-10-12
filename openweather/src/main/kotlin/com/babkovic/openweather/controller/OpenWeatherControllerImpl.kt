@@ -4,6 +4,7 @@ import com.babkovic.current.model.domain.CurrentWeather
 import com.babkovic.openweather.service.OpenWeatherService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -15,6 +16,7 @@ class OpenWeatherControllerImpl(@Autowired private val service: OpenWeatherServi
         return service.getCurrentWeatherFromOpenWeatherByCityIds()
     }
 
+    @ResponseBody
     override fun getCurrentWeatherFromOpenWeatherByCityId(
         @RequestParam lat: Double,
         @RequestParam lon: Double

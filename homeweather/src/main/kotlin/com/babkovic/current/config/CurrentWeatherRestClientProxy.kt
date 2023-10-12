@@ -13,7 +13,8 @@ class CurrentWeatherRestClientProxy {
     fun currentWeatherClient(@Qualifier("currentWeatherRestClient") restClient: RestClient): CurrentWeatherClientService {
         val factory: HttpServiceProxyFactory =
             HttpServiceProxyFactory.builderFor(
-                RestClientAdapter.create(restClient)
+                RestClientAdapter
+                    .create(restClient)
             )
                 .build()
 
