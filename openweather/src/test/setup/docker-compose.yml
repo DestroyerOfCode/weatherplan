@@ -1,10 +1,10 @@
 version: '3.8'
 services:
   mongodb:
-    container_name: "mongo-db"
+    container_name: "mongo-db-test"
     image: mongodb/mongodb-community-server:6.0.4-ubi8
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=pass
     ports:
-      - "27017:27017"
+      - "27018:27017"

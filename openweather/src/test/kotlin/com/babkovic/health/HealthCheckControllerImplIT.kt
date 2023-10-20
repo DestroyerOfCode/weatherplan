@@ -1,6 +1,6 @@
 package com.babkovic.health
 
-import com.babkovic.openweather.BaseTest
+import com.babkovic.BaseTest
 import com.babkovic.openweather.controller.OpenWeatherControllerIT
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInfo
@@ -14,7 +14,7 @@ class HealthCheckControllerImplIT : BaseTest() {
     }
 
     @Test
-    fun `When calling Healthcheck Endpoint, should return Response Entity ok`(testInfo: TestInfo) {
+    fun `when calling Healthcheck Endpoint, should return Response Entity ok`(testInfo: TestInfo) {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         client.get().uri("${BASE_URL}health").exchange().expectStatus().is2xxSuccessful

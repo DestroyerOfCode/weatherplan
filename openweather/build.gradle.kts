@@ -3,9 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.springframework.boot") version ("3.2.0-M3")
-    kotlin("jvm") version "1.9.20-Beta2"
+    kotlin("jvm") version "1.9.20-RC"
 //    id("io.spring.dependency-management") version "1.1.3"
-    kotlin("plugin.spring") version "1.9.20-Beta2"
+    kotlin("plugin.spring") version "1.9.20-RC"
     id("java-library")
 
 }
@@ -31,6 +31,7 @@ dependencies {
 
     //spring
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+//    implementation ("org.springframework.boot:spring-boot-starter-data-mongodb")
 
 //    implementation(libs.spring.boot.starter.data.mongodb.reactive)
     implementation(libs.spring.boot.starter.webflux)
@@ -53,7 +54,12 @@ dependencies {
 //    testImplementation(libs.spring.test)
 //    testImplementation(libs.reactor.test)
     testApi(libs.bundles.web.test.bundle)
+//    testImplementation( "org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.boot:spring-boot-testcontainers")
+    testImplementation ("org.testcontainers:junit-jupiter:1.19.1")
 
+    testImplementation("org.testcontainers:testcontainers:1.19.1")
+    testImplementation("org.testcontainers:mongodb:1.19.1")
 }
 
 tasks.test {
@@ -63,7 +69,7 @@ tasks.test {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "21"
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 }
 
@@ -75,5 +81,13 @@ kotlin {
     jvmToolchain(21)
     compilerOptions {
         VersionNumber.version(21)
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            setSrcDirs(listOf("src/main/resources"))
+        }
     }
 }

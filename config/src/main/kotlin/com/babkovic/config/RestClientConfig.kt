@@ -34,25 +34,25 @@ class RestClientConfig {
         return restClient
     }
 
-    @Bean(name = ["currentWeatherRestClient"])
-    fun currentWeatherClient(restClientBuilder: RestClient.Builder): RestClient {
-        val componentsBuilder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/open/current")
-
-        val restClient = restClientBuilder.uriBuilderFactory(
-            DefaultUriBuilderFactory(componentsBuilder)
-        )
-            .messageConverters {
-                arrayOf(
-                    MappingJackson2HttpMessageConverter().setSupportedMediaTypes(
-                        singletonList(
-                            APPLICATION_NDJSON
-                        )
-                    )
-                )
-            }
-            .build()
-
-        return restClient
-    }
+//    @Bean(name = ["currentWeatherRestClient"])
+//    fun currentWeatherClient(restClientBuilder: RestClient.Builder): RestClient {
+//        val componentsBuilder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/open/current")
+//
+//        val restClient = restClientBuilder.uriBuilderFactory(
+//            DefaultUriBuilderFactory(componentsBuilder)
+//        )
+//            .messageConverters {
+//                arrayOf(
+//                    MappingJackson2HttpMessageConverter().setSupportedMediaTypes(
+//                        singletonList(
+//                            APPLICATION_NDJSON
+//                        )
+//                    )
+//                )
+//            }
+//            .build()
+//
+//        return restClient
+//    }
 
 }

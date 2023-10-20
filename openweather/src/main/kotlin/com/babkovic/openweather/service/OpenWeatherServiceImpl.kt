@@ -1,30 +1,38 @@
 package com.babkovic.openweather.service
 
+import com.babkovic.current.mapper.CurrentWeatherDeserializer
 import com.babkovic.current.model.domain.CurrentWeather
 import com.babkovic.openweather.config.OpenWeatherClientService
 import com.babkovic.openweather.exception.OpenWeatherApiException
 import com.babkovic.openweather.model.domain.City
 import com.fasterxml.jackson.databind.ObjectMapper
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toFlux
 import reactor.kotlin.core.publisher.toMono
-import java.io.File
 
 @Service
 class OpenWeatherServiceImpl(
     @Autowired private val client: OpenWeatherClientService,
     @Autowired private val objectMapper: ObjectMapper
 ) : OpenWeatherService {
+
+    companion object {
+        private val LOGGER: Logger = LoggerFactory.getLogger(OpenWeatherServiceImpl::class.java)
+    }
     override fun getCurrentWeatherFromOpenWeatherByCityIds(): Flux<CurrentWeather> {
         val cities: List<City> = getCityCoords()
+        LOGGER.info("Starting communication with openweatherapi.org")
+
         return cities.toFlux()
+            .log("Sending the request to openweatherapi.org")
             .flatMap(handleCurrentWeatherCall)
+            .log("Received the current object from openweatherapi.org")
             .onErrorMap(handleOpenWeatherError)
-
-
     }
 
     override fun getCurrentWeatherFromOpenWeatherByCityId(lat: Double, lon: Double): Mono<CurrentWeather> {
@@ -42,7 +50,7 @@ class OpenWeatherServiceImpl(
 
     private fun getCityCoords(): List<City> {
         return objectMapper.readValue(
-            File("src/main/resources/SlovakCities.json"),
+            Thread.currentThread().getContextClassLoader().getResourceAsStream("SlovakCities.json"),
             objectMapper.typeFactory.constructCollectionType(List::class.java, City::class.java)
         )
     }

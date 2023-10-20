@@ -3,9 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.springframework.boot") version ("3.2.0-M3")
-    kotlin("jvm") version "1.9.20-Beta2"
+    kotlin("jvm") version "1.9.20-RC"
 //    id("io.spring.dependency-management") version "1.1.3"
-    kotlin("plugin.spring") version "1.9.20-Beta2"
+    kotlin("plugin.spring") version "1.9.20-RC"
 }
 
 apply(
@@ -18,13 +18,13 @@ repositories {
         setUrl("https://repo.spring.io/milestone")
     }
     dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20-Beta2")
+        implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20-RC")
     }
 }
 
 dependencies {
     implementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.0-M3"))
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20-Beta2")
+    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20-RC")
 
 }
 
@@ -39,7 +39,7 @@ java {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "21"
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 }
 

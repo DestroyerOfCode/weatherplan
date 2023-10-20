@@ -1,28 +1,35 @@
 package com.babkovic.current.controller
 
 import com.babkovic.current.model.domain.CurrentWeather
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
+import org.jetbrains.annotations.NotNull
+import org.springframework.http.MediaType
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.*
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RequestMapping("/current")
+@ResponseBody
 interface WeatherCurrentController {
 
-    @GetMapping
+    @GetMapping("/test", produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun test(): ResponseEntity<String>
+
+    @GetMapping("/all")
     fun fetchCurrentWeather(): Flux<CurrentWeather>
 
-    @GetMapping("/getByCoords")
+    @GetMapping
     fun fetchCurrentWeather(
+        @NotNull @RequestParam lat: Double,
+        @NotNull @RequestParam lon: Double
+    ): Mono<CurrentWeather>
+
+    @PostMapping("/save")
+    fun saveCurrentWeather(
         @RequestParam lat: Double,
         @RequestParam lon: Double
     ): Mono<CurrentWeather>
 
-    @PostMapping("/saveByCoords")
-    fun saveCurrentWeather(
-        @RequestParam lat: Double,
-        @RequestParam lon: Double
-    )
+    @PostMapping("/bulk/save")
+    fun saveCurrentWeather(): Flux<CurrentWeather>
 }

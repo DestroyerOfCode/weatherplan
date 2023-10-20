@@ -1,6 +1,7 @@
 package com.babkovic.current.config
 
 import com.babkovic.current.mapper.CurrentWeatherDeserializer
+import com.babkovic.current.mapper.CurrentWeatherSerializer
 import com.babkovic.current.model.domain.CurrentWeather
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.module.SimpleModule
@@ -22,7 +23,8 @@ class CurrentWeatherJacksonConfig {
     private fun registerCurrentWeather(objectMapper: ObjectMapper) {
         val module = SimpleModule()
         module.addDeserializer(CurrentWeather::class.java, CurrentWeatherDeserializer())
-
+        module.addSerializer(CurrentWeather::class.java, CurrentWeatherSerializer())
         objectMapper.registerModule(module)
     }
+
 }

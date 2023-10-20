@@ -1,9 +1,11 @@
 spring:
   data:
     mongodb:
-      port: 27017
+      port: 27018
       username: "user"
       password: "pass"
       host: "localhost"
       database: "weather"
       authentication-database: "admin"
+server:
+  port: 8080

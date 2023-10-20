@@ -18,5 +18,45 @@
       "lon": 20.24386,
       "lat": 49.136372
     }
+  },
+  {
+    "id": 723082,
+    "name": "Ždiar",
+    "state": "",
+    "country": "SK",
+    "coord": {
+      "lon": 20.26239,
+      "lat": 49.271
+    }
+  },
+  {
+    "id": 723119,
+    "name": "Vysoké Tatry",
+    "state": "",
+    "country": "SK",
+    "coord": {
+      "lon": 20.24386,
+      "lat": 49.136372
+    }
+  },
+  {
+    "id": 723082,
+    "name": "Ždiar",
+    "state": "",
+    "country": "SK",
+    "coord": {
+      "lon": 20.26239,
+      "lat": 49.271
+    }
+  },
+  {
+    "id": 723119,
+    "name": "Vysoké Tatry",
+    "state": "",
+    "country": "SK",
+    "coord": {
+      "lon": 20.24386,
+      "lat": 49.136372
+    }
   }
 ]

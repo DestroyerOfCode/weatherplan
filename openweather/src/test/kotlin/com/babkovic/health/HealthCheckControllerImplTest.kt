@@ -15,7 +15,7 @@ class HealthCheckControllerImplTest {
     }
 
     @Test
-    fun whenCallingMethodHealthCheckShouldReturnString() {
+    fun `when calling healthcheck should return response entity string`() {
         //given and when
         val returnString: ResponseEntity<String> = controllerImpl.checkHealth()
 

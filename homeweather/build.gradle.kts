@@ -1,10 +1,11 @@
+import org.gradle.util.internal.VersionNumber
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("org.springframework.boot") version ("3.2.0-M3")
-    kotlin("jvm") version "1.9.20-Beta2"
+    kotlin("jvm") version "1.9.20-RC"
 //    id("io.spring.dependency-management") version "1.1.3"
-    kotlin("plugin.spring") version "1.9.20-Beta2"
+    kotlin("plugin.spring") version "1.9.20-RC"
 
 }
 
@@ -48,6 +49,7 @@ dependencies {
 
     //testing
     testImplementation(kotlin("test"))
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 //    testImplementation(libs.bundles.web.test.bundle)
 
 }
@@ -59,7 +61,7 @@ java {
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs += "-Xjsr305=strict"
-        jvmTarget = "21"
+        jvmTarget = JavaVersion.VERSION_21.toString()
     }
 }
 
@@ -68,4 +70,7 @@ tasks.test {
 }
 kotlin {
     jvmToolchain(21)
+    compilerOptions {
+        VersionNumber.version(21)
+    }
 }

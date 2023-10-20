@@ -1,7 +1,7 @@
 package com.babkovic.openweather.controller
 
 import com.babkovic.current.model.domain.CurrentWeather
-import com.babkovic.openweather.BaseTest
+import com.babkovic.BaseTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInfo
 import org.slf4j.Logger
@@ -23,7 +23,7 @@ class OpenWeatherControllerIT : BaseTest() {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         //given and when
-        val url = "/open/current/getByCoords?lat=49.136372&lon=20.24386"
+        val url = "$BASE_URL/open/current?lat=49.136372&lon=20.24386"
         val resultFlux: FluxExchangeResult<CurrentWeather> = callCurrentWeatherFlux(url)
 
         //then
@@ -48,7 +48,8 @@ class OpenWeatherControllerIT : BaseTest() {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         //given and when
-        val resFlux: FluxExchangeResult<CurrentWeather> = callCurrentWeatherFlux("/open/current")
+        val url = "$BASE_URL/open/current/all"
+        val resFlux: FluxExchangeResult<CurrentWeather> = callCurrentWeatherFlux(url)
 
         //then
         resFlux.responseBody.test()
@@ -78,6 +79,6 @@ class OpenWeatherControllerIT : BaseTest() {
         .accept(MediaType.APPLICATION_NDJSON)
         .exchange()
         .expectStatus().isOk
-        .expectHeader().contentType(MediaType.APPLICATION_NDJSON) // Adjust the MediaType as needed
+        .expectHeader().contentType(MediaType.APPLICATION_NDJSON)
         .returnResult(CurrentWeather::class.java)
 }
