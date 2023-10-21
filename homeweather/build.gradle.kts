@@ -4,7 +4,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version ("3.2.0-M3")
     kotlin("jvm") version "1.9.20-RC"
-//    id("io.spring.dependency-management") version "1.1.3"
     kotlin("plugin.spring") version "1.9.20-RC"
 
 }
@@ -31,11 +30,11 @@ dependencies {
     implementation(libs.spring.boot.starter.webflux)
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
-//    implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
     //business logic
     implementation(libs.modelmapper)
     implementation(libs.org.yaml)

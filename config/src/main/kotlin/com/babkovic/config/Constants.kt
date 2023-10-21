@@ -2,14 +2,8 @@ package com.babkovic.config
 
 class Constants {
     companion object {
-        private const val SCHEMA = "https"
-        private const val SUBDOMAIN = "api"
-        private const val SECOND_LEVEL_DOMAIN = "openweathermap"
-        private const val TOP_DOMAIN = "org"
-        private const val DOMAIN = "$SUBDOMAIN.$SECOND_LEVEL_DOMAIN.$TOP_DOMAIN"
-        private const val VERSION = "3.0"
-        private const val PATH = "data/$VERSION/onecall"
-        const val OPEN_WEATHER_URL = "$SCHEMA://$DOMAIN/$PATH"
+        const val OPEN_WEATHER_API_URL = "https://api.openweathermap.org/data/3.0/onecall"
+        const val WEATHER_PLAN_OPEN_URL = "http://localhost:8080/open/current"
         const val APP_ID = "appid"
     }
 

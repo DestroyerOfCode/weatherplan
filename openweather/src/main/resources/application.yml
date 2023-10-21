@@ -9,3 +9,6 @@ spring:
       authentication-database: "admin"
 server:
   port: 8080
+weather:
+  open-weather-api-url: "https://api.openweathermap.org/data/3.0/onecall"
+  weather-plan-open-url: "http://localhost:8080/open/current"

@@ -10,15 +10,15 @@ import reactor.netty.http.client.HttpClient
 import java.time.Duration
 import java.time.temporal.ChronoUnit.MILLIS
 
-@Configuration
-class WebClientConfig {
+@Configuration(proxyBeanMethods = false)
+class WebClientConfig(private val properties: WeatherProperties) {
     @Bean
     fun webClientBuilder(): WebClient.Builder {
         return WebClient.builder()
     }
     @Bean(name = ["currentWeatherWebClient"])
     fun webClient(builder: WebClient.Builder): WebClient {
-        val componentsBuilder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/open/current")
+        val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.weatherPlanOpenUrl)
 
         val webClient = builder.uriBuilderFactory(
             DefaultUriBuilderFactory(componentsBuilder)

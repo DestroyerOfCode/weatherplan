@@ -14,13 +14,13 @@ import reactor.core.publisher.Mono
 import reactor.core.scheduler.Schedulers
 
 @Service
-class WeatherCurrentServiceImpl(
+class CurrentWeatherServiceImpl(
     @Autowired private val client: CurrentWeatherClientService,
     @Autowired private val repository: CurrentWeatherRepository
-) : WeatherCurrentService {
+) : CurrentWeatherService {
 
     companion object {
-        private val LOGGER: Logger = LoggerFactory.getLogger(WeatherCurrentServiceImpl::class.java)
+        private val LOGGER: Logger = LoggerFactory.getLogger(CurrentWeatherServiceImpl::class.java)
     }
 
     @Transactional

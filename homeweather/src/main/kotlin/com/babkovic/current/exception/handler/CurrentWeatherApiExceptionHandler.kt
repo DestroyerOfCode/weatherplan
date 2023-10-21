@@ -1,6 +1,6 @@
 package com.babkovic.current.exception.handler
 
-import com.babkovic.current.controller.WeatherCurrentControllerImpl
+import com.babkovic.current.controller.CurrentWeatherControllerImpl
 import com.babkovic.current.exception.CurrentWeatherException
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
@@ -11,7 +11,7 @@ import org.springframework.web.reactive.result.method.annotation.ResponseEntityE
 import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 
-@ControllerAdvice(basePackageClasses = [WeatherCurrentControllerImpl::class])
+@ControllerAdvice(basePackageClasses = [CurrentWeatherControllerImpl::class])
 class CurrentWeatherApiExceptionHandler : ResponseEntityExceptionHandler() {
     @ResponseBody
     @ExceptionHandler(CurrentWeatherException::class)

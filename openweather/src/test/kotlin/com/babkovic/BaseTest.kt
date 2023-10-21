@@ -20,10 +20,10 @@ class BaseTest {
     @Value("\${server.port}")
     private lateinit var serverPort: String
 
-    @Value("\${weather.subdomain}")
+    @Value("\${weather.home-weather.sub-domain}")
     private lateinit var subDomain: String
 
-    @Value("\${weather.schema}")
+    @Value("\${weather.home-weather.schema}")
     private lateinit var schema: String
 
     protected lateinit var BASE_URL: String

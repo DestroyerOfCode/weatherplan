@@ -1,15 +1,14 @@
 package com.babkovic.current.controller
 
 import com.babkovic.current.model.domain.CurrentWeather
-import com.babkovic.current.service.WeatherCurrentService
+import com.babkovic.current.service.CurrentWeatherService
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @RestController
-class WeatherCurrentControllerImpl(@Autowired private val service: WeatherCurrentService) : WeatherCurrentController {
+class CurrentWeatherControllerImpl(@Autowired private val service: CurrentWeatherService) : CurrentWeatherController {
     override fun saveCurrentWeather(): Flux<CurrentWeather> {
         return service.saveCurrentWeather()
     }

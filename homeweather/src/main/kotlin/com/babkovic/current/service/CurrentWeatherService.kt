@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-interface WeatherCurrentService {
+interface CurrentWeatherService {
     fun saveCurrentWeather(): Flux<CurrentWeather>
     fun saveCurrentWeather(@NotNull lat: Double, @NotNull lon: Double): Mono<CurrentWeather>
 }
