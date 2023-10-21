@@ -12,12 +12,10 @@ import java.time.temporal.ChronoUnit.MILLIS
 
 @Configuration
 class WebClientConfig {
-
     @Bean
     fun webClientBuilder(): WebClient.Builder {
         return WebClient.builder()
     }
-
     @Bean(name = ["currentWeatherWebClient"])
     fun webClient(builder: WebClient.Builder): WebClient {
         val componentsBuilder = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/open/current")

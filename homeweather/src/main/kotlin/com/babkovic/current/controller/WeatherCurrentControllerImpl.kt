@@ -10,18 +10,6 @@ import reactor.core.publisher.Mono
 
 @RestController
 class WeatherCurrentControllerImpl(@Autowired private val service: WeatherCurrentService) : WeatherCurrentController {
-    override fun test(): ResponseEntity<String> {
-        return service.test()
-    }
-
-    override fun fetchCurrentWeather(): Flux<CurrentWeather> {
-        return service.fetchCurrentWeather()
-    }
-
-    override fun fetchCurrentWeather(lat: Double, lon: Double): Mono<CurrentWeather> {
-        return service.fetchCurrentWeather(lat, lon)
-    }
-
     override fun saveCurrentWeather(): Flux<CurrentWeather> {
         return service.saveCurrentWeather()
     }

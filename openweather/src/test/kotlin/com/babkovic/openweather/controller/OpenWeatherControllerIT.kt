@@ -1,7 +1,7 @@
 package com.babkovic.openweather.controller
 
-import com.babkovic.current.model.domain.CurrentWeather
 import com.babkovic.BaseTest
+import com.babkovic.current.model.domain.CurrentWeather
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInfo
 import org.slf4j.Logger

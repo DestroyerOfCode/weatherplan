@@ -31,7 +31,7 @@ class CurrentWeatherDeserializer :
         try {
             val node: JsonNode = p.codec.readTree(p)
 
-            val _id: ObjectId =
+            val id: ObjectId =
                 if (node.hasNonNull("_id")) ObjectId(node.get("_id").asText())
                 else ObjectId.get()
             val lat: Double = node.get("lat").doubleValue()
@@ -39,7 +39,7 @@ class CurrentWeatherDeserializer :
             val timezone: String = node.get("timezone").textValue()
             val current = deserializeCurrent(node)
 
-            return CurrentWeather(_id, lat, lon, timezone, current)
+            return CurrentWeather(id, lat, lon, timezone, current)
         } catch (e: ParseException) {
             LOGGER.error("An error has occurred parsing a node to CurrentWeather", e)
         } catch (e: NullPointerException) {
@@ -60,9 +60,5 @@ class CurrentWeatherDeserializer :
         val humidity: Int = node.get("current").get("humidity").intValue()
         val dewPoint: Double = node.get("current").get("dew_point").doubleValue()
         return Current(dt, sunrise, sunset, temp, feelsLike, pressure, humidity, dewPoint)
-    }
-
-    private fun toHex(arg: String): String {
-        return String.format("%x", BigInteger(1, arg.toByteArray()))
     }
 }

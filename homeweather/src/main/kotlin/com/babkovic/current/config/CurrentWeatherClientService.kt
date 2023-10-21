@@ -15,14 +15,8 @@ import reactor.core.publisher.Mono
 @HttpExchange(contentType = MediaType.APPLICATION_NDJSON_VALUE)
 @ResponseBody
 interface CurrentWeatherClientService {
-
-
-    @GetExchange("/test")
-    fun test(): ResponseEntity<String>
-
     @GetExchange
     fun currentWeathers(@NotNull @RequestParam lat: Double, @NotNull @RequestParam lon: Double): Mono<CurrentWeather>
-
     @GetExchange("/all")
     fun currentWeathers(): Flux<CurrentWeather>
 

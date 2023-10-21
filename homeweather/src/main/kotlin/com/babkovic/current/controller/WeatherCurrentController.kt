@@ -11,25 +11,11 @@ import reactor.core.publisher.Mono
 @RequestMapping("/current")
 @ResponseBody
 interface WeatherCurrentController {
-
-    @GetMapping("/test", produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun test(): ResponseEntity<String>
-
-    @GetMapping("/all")
-    fun fetchCurrentWeather(): Flux<CurrentWeather>
-
-    @GetMapping
-    fun fetchCurrentWeather(
+    @PostMapping("/save")
+    fun saveCurrentWeather(
         @NotNull @RequestParam lat: Double,
         @NotNull @RequestParam lon: Double
     ): Mono<CurrentWeather>
-
-    @PostMapping("/save")
-    fun saveCurrentWeather(
-        @RequestParam lat: Double,
-        @RequestParam lon: Double
-    ): Mono<CurrentWeather>
-
     @PostMapping("/bulk/save")
     fun saveCurrentWeather(): Flux<CurrentWeather>
 }

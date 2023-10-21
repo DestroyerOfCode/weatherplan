@@ -1,9 +1,8 @@
 package com.babkovic.openweather.service
 
-import com.babkovic.current.mapper.CurrentWeatherDeserializer
+import com.babkovic.current.exception.CurrentWeatherException
 import com.babkovic.current.model.domain.CurrentWeather
 import com.babkovic.openweather.config.OpenWeatherClientService
-import com.babkovic.openweather.exception.OpenWeatherApiException
 import com.babkovic.openweather.model.domain.City
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.slf4j.Logger
@@ -46,7 +45,7 @@ class OpenWeatherServiceImpl(
     }
 
     private val handleOpenWeatherError =
-        { e: Throwable -> throw OpenWeatherApiException("An error occurred fetching weather", e) }
+        { e: Throwable -> throw CurrentWeatherException("An error occurred fetching weather", e) }
 
     private fun getCityCoords(): List<City> {
         return objectMapper.readValue(

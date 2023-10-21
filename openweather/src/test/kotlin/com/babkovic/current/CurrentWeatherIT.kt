@@ -1,21 +1,17 @@
 package com.babkovic.current
 
-import com.babkovic.Application
+import com.babkovic.BaseTest
 import com.babkovic.current.model.domain.CurrentWeather
 import com.babkovic.current.model.repository.CurrentWeatherRepository
-import com.babkovic.BaseTest
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInfo
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.ApplicationContext
-import org.springframework.core.ParameterizedTypeReference
 import org.springframework.http.MediaType
-import org.springframework.test.context.support.AnnotationConfigContextLoader
-import reactor.core.publisher.Mono
 import reactor.kotlin.test.test
-import java.util.stream.Stream
 import kotlin.test.assertEquals
 
 class CurrentWeatherIT : BaseTest() {
@@ -24,29 +20,19 @@ class CurrentWeatherIT : BaseTest() {
         private val LOGGER: Logger = LoggerFactory.getLogger(CurrentWeatherIT::class.java)
     }
 
+    @AfterEach
+    fun cleanUp() {
+        repo.deleteAll().block()
+    }
+
     @Autowired
     private lateinit var repo: CurrentWeatherRepository
-
-    @Autowired
-    private lateinit var appCtx: ApplicationContext
-
-    @Test
-    fun test(testInfo: TestInfo) {
-//        Thread.sleep(10000)
-        val res = client.get()
-            .uri("current/test")
-            .exchange()
-            .expectBody(String::class.java)
-            .isEqualTo("test")
-            .returnResult()
-        LOGGER.info(res.toString())
-        LOGGER.info("Ending test ${testInfo.displayName}\n")
-    }
 
     @Test
     fun `should return and persist current weather mono when calling save endpoint`(testInfo: TestInfo) {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
+        //given and when
         val resFlux = client.post()
             .uri("current/save?lat=49.136372&lon=20.24386")
             .accept(MediaType.APPLICATION_NDJSON)
@@ -55,6 +41,7 @@ class CurrentWeatherIT : BaseTest() {
             .expectHeader().contentType(MediaType.APPLICATION_NDJSON)
             .returnResult(CurrentWeather::class.java)
 
+        //then
         resFlux.responseBody.test()
             .assertNext { currentWeather ->
                 run {
@@ -65,6 +52,7 @@ class CurrentWeatherIT : BaseTest() {
             }
             .thenCancel()
             .verify()
+        Assertions.assertEquals(1, repo.findAll().count().block())
 
         LOGGER.info("Ending test ${testInfo.displayName}\n")
 
@@ -74,6 +62,7 @@ class CurrentWeatherIT : BaseTest() {
     fun `should save and remove entity from db when calling current weather by coords`(testInfo: TestInfo) {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
+        //given and when
         val resFlux = client.post()
             .uri("current/bulk/save")
             .accept(MediaType.APPLICATION_NDJSON)
@@ -82,6 +71,7 @@ class CurrentWeatherIT : BaseTest() {
             .expectHeader().contentType(MediaType.APPLICATION_NDJSON)
             .returnResult(CurrentWeather::class.java)
 
+        //then
         resFlux.responseBody.test()
             .assertNext { currentWeather ->
                 run {
@@ -99,6 +89,7 @@ class CurrentWeatherIT : BaseTest() {
             }
             .thenCancel()
             .verify()
+        Assertions.assertEquals(2, repo.findAll().count().block())
 
         LOGGER.info("Ending test ${testInfo.displayName}\n")
 

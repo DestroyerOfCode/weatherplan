@@ -9,3 +9,6 @@ spring:
       authentication-database: "admin"
 server:
   port: 8080
+weather:
+  schema: "http"
+  sub-domain: "localhost"

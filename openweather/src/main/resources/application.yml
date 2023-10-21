@@ -7,3 +7,5 @@ spring:
       host: "localhost"
       database: "weather"
       authentication-database: "admin"
+server:
+  port: 8080

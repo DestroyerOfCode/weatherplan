@@ -1,7 +1,7 @@
-package com.babkovic.openweather.exception.handler
+package com.babkovic.current.exception.handler
 
 import com.babkovic.current.controller.WeatherCurrentControllerImpl
-import com.babkovic.openweather.exception.OpenWeatherApiException
+import com.babkovic.current.exception.CurrentWeatherException
 import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -12,11 +12,11 @@ import org.springframework.web.server.ServerWebExchange
 import reactor.core.publisher.Mono
 
 @ControllerAdvice(basePackageClasses = [WeatherCurrentControllerImpl::class])
-class OpenWeatherApiExceptionHandler : ResponseEntityExceptionHandler() {
+class CurrentWeatherApiExceptionHandler : ResponseEntityExceptionHandler() {
     @ResponseBody
-    @ExceptionHandler(OpenWeatherApiException::class)
+    @ExceptionHandler(CurrentWeatherException::class)
     fun handleOpenWeatherApiException(
-        request: ServerWebExchange, ex: OpenWeatherApiException
+        request: ServerWebExchange, ex: CurrentWeatherException
     ): Mono<*> {
         return super.handleExceptionInternal(
             ex,

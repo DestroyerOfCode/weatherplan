@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class CurrentWeatherSerializer : JsonSerializer<CurrentWeather>() {
     override fun serialize(value: CurrentWeather, gen: JsonGenerator, serializers: SerializerProvider) {
         gen.writeStartObject()
-        gen.writeStringField("_id", value._id.toString())
+        gen.writeStringField("_id", value.id.toString())
         gen.writeNumberField("lat", value.lat)
         gen.writeNumberField("lon", value.lon)
         gen.writeStringField("timezone", value.timezone)

@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class CurrentWeatherJacksonConfig {
-
     @Bean
     fun openWeatherObjectMapper(@Qualifier("objectMapper") initialObjectMapper: ObjectMapper): ObjectMapper {
         val objectMapper = ObjectMapper()
@@ -19,12 +18,10 @@ class CurrentWeatherJacksonConfig {
 
         return objectMapper
     }
-
     private fun registerCurrentWeather(objectMapper: ObjectMapper) {
         val module = SimpleModule()
         module.addDeserializer(CurrentWeather::class.java, CurrentWeatherDeserializer())
         module.addSerializer(CurrentWeather::class.java, CurrentWeatherSerializer())
         objectMapper.registerModule(module)
     }
-
 }
