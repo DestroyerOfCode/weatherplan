@@ -25,21 +25,9 @@ repositories {
 dependencies {
     //dependent projects
     implementation(project(":homeweather"))
-    implementation(project(":config"))
 
     //spring
-    implementation(platform(libs.spring.boot.dependencies))
-    implementation(libs.spring.boot.starter.data.mongodb.reactive)
-    implementation(libs.spring.boot.starter.webflux)
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
-
-    //business logic
-    implementation(libs.modelmapper)
-    implementation(libs.org.yaml)
-    implementation(libs.jackson.databind)
-
-    //reactor
-    implementation(libs.reactor.kotlin.extensions)
 
     //logging
     implementation(libs.bundles.logging)
@@ -47,7 +35,6 @@ dependencies {
     //testing
     testImplementation(kotlin("test"))
     testApi(libs.bundles.web.test)
-
     testImplementation(libs.bundles.testcontainers)
 }
 

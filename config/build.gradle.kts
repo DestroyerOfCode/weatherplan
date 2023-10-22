@@ -24,14 +24,14 @@ repositories {
 
 dependencies {
     //spring
-    implementation(platform(libs.spring.boot.dependencies))
-    implementation(libs.spring.boot.starter.webflux)
-    implementation(libs.spring.boot.starter.data.mongodb.reactive)
+    api(platform(libs.spring.boot.dependencies))
+    api(libs.spring.boot.starter.webflux)
+    api(libs.spring.boot.starter.data.mongodb.reactive)
 
     //business logic
-    implementation(libs.modelmapper)
-    implementation(libs.org.yaml)
-    implementation(libs.jackson.databind)
+    api(libs.modelmapper)
+    api(libs.org.yaml)
+    api(libs.jackson.databind)
 
     //logging
     implementation(libs.bundles.logging)

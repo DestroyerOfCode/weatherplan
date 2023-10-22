@@ -24,23 +24,16 @@ repositories {
 
 dependencies {
     //dependent projects
-    implementation(project(":config"))
+    api(project(":config"))
 
     //spring
-    implementation(platform(libs.spring.boot.dependencies))
-    implementation(libs.spring.boot.starter.webflux)
-    implementation(libs.spring.boot.starter.data.mongodb.reactive)
     implementation(libs.spring.boot.starter)
-    implementation(libs.reactor.kotlin.extensions)
+    implementation(libs.springdoc.openapi.starter.webmvc.ui)
 
     //kotlin
+    api(libs.reactor.kotlin.extensions)
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlinx.coroutines.reactor)
-
-    //business logic
-    implementation(libs.modelmapper)
-    implementation(libs.org.yaml)
-    implementation(libs.jackson.databind)
 
     //logging
     implementation(libs.bundles.logging)
