@@ -6,6 +6,4 @@ class Constants {
         const val WEATHER_PLAN_OPEN_URL = "http://localhost:8080/open/current"
         const val APP_ID = "appid"
     }
-
-
 }

@@ -1,12 +1,11 @@
 import org.gradle.util.internal.VersionNumber
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("org.springframework.boot") version ("3.2.0-M3")
-    kotlin("jvm") version "1.9.20-RC"
-//    id("io.spring.dependency-management") version "1.1.3"
-    kotlin("plugin.spring") version "1.9.20-RC"
-
+    id("org.springframework.boot") version (libs.versions.org.springframework.boot) apply (false)
+    kotlin("jvm") version libs.versions.org.jetbrains.kotlin
+    kotlin("plugin.spring") version libs.versions.org.jetbrains.kotlin
 }
 
 group = "com.babkovic"
@@ -24,10 +23,10 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.0-M3"))
     //spring
+    implementation(platform(libs.spring.boot.dependencies))
     implementation(libs.spring.boot.starter.webflux)
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+    implementation(libs.spring.boot.starter.data.mongodb.reactive)
 
     //business logic
     implementation(libs.modelmapper)
@@ -35,8 +34,7 @@ dependencies {
     implementation(libs.jackson.databind)
 
     //logging
-    implementation(libs.bundles.logging.bundle)
-
+    implementation(libs.bundles.logging)
 }
 
 java {
@@ -48,6 +46,10 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs += "-Xjsr305=strict"
         jvmTarget = JavaVersion.VERSION_21.toString()
     }
+}
+
+tasks.named<BootJar>("bootJar") {
+    enabled = false
 }
 
 kotlin {

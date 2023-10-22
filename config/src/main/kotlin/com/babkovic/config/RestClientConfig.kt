@@ -15,6 +15,7 @@ class RestClientConfig(private val properties: WeatherProperties){
     }
     @Bean(name = ["openWeatherRestClient"])
     fun openWeatherClient(restClientBuilder: RestClient.Builder): RestClient {
+        print("appid: " + System.getenv("appid") + "\n")
         val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl)
             .queryParam(APP_ID, System.getenv("appid"))
 

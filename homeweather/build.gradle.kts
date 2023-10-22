@@ -1,11 +1,11 @@
 import org.gradle.util.internal.VersionNumber
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
-    id("org.springframework.boot") version ("3.2.0-M3")
-    kotlin("jvm") version "1.9.20-RC"
-    kotlin("plugin.spring") version "1.9.20-RC"
-
+    id("org.springframework.boot") version (libs.versions.org.springframework.boot) apply (false)
+    kotlin("jvm") version libs.versions.org.jetbrains.kotlin
+    kotlin("plugin.spring") version libs.versions.org.jetbrains.kotlin
 }
 
 group = "com.babkovic"
@@ -23,34 +23,30 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.0-M3"))
+    //dependent projects
     implementation(project(":config"))
 
     //spring
+    implementation(platform(libs.spring.boot.dependencies))
     implementation(libs.spring.boot.starter.webflux)
-    implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
-    implementation("org.springframework.boot:spring-boot-starter")
-    implementation("io.projectreactor.kotlin:reactor-kotlin-extensions")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+    implementation(libs.spring.boot.starter.data.mongodb.reactive)
+    implementation(libs.spring.boot.starter)
+    implementation(libs.reactor.kotlin.extensions)
+
+    //kotlin
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlinx.coroutines.reactor)
 
     //business logic
     implementation(libs.modelmapper)
     implementation(libs.org.yaml)
     implementation(libs.jackson.databind)
 
-    //reactor
-//    implementation(libs.reactor.kotlin.extensions)
-
     //logging
-    implementation(libs.bundles.logging.bundle)
+    implementation(libs.bundles.logging)
 
     //testing
     testImplementation(kotlin("test"))
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
-//    testImplementation(libs.bundles.web.test.bundle)
-
 }
 
 java {
@@ -67,6 +63,11 @@ tasks.withType<KotlinCompile> {
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.named<BootJar>("bootJar") {
+    enabled = false
+}
+
 kotlin {
     jvmToolchain(21)
     compilerOptions {

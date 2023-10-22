@@ -34,7 +34,7 @@ data class CurrentWeather(
         private var timezone: String? = null,
         private var current: Current? = null
     ) {
-        fun id(lat: Double) = apply { this.id = id }
+        fun id(id: ObjectId) = apply { this.id = id }
         fun lat(lat: Double) = apply { this.lat = lat }
         fun lon(lon: Double) = apply { this.lon = lon }
         fun timezone(timezone: String) = apply { this.timezone = timezone }

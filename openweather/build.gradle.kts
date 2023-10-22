@@ -2,11 +2,10 @@ import org.gradle.util.internal.VersionNumber
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version ("3.2.0-M3")
-    kotlin("jvm") version "1.9.20-RC"
-    kotlin("plugin.spring") version "1.9.20-RC"
+    id("org.springframework.boot") version (libs.versions.org.springframework.boot)
+    kotlin("jvm") version libs.versions.org.jetbrains.kotlin
+    kotlin("plugin.spring") version libs.versions.org.jetbrains.kotlin
     id("java-library")
-
 }
 
 group = "com.babkovic"
@@ -24,12 +23,13 @@ repositories {
 }
 
 dependencies {
-    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.0-M3"))
+    //dependent projects
     implementation(project(":homeweather"))
     implementation(project(":config"))
 
     //spring
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
+    implementation(platform(libs.spring.boot.dependencies))
+    implementation(libs.spring.boot.starter.data.mongodb.reactive)
     implementation(libs.spring.boot.starter.webflux)
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
 
@@ -42,16 +42,13 @@ dependencies {
     implementation(libs.reactor.kotlin.extensions)
 
     //logging
-    implementation(libs.bundles.logging.bundle)
+    implementation(libs.bundles.logging)
 
     //testing
     testImplementation(kotlin("test"))
-    testApi(libs.bundles.web.test.bundle)
-    testImplementation("org.springframework.boot:spring-boot-testcontainers")
-    testImplementation ("org.testcontainers:junit-jupiter:1.19.1")
+    testApi(libs.bundles.web.test)
 
-    testImplementation("org.testcontainers:testcontainers:1.19.1")
-    testImplementation("org.testcontainers:mongodb:1.19.1")
+    testImplementation(libs.bundles.testcontainers)
 }
 
 tasks.test {
@@ -82,4 +79,8 @@ sourceSets {
             setSrcDirs(listOf("src/main/resources"))
         }
     }
+}
+
+tasks.bootRun {
+    environment = mapOf("appid" to project.findProperty("appid"))
 }

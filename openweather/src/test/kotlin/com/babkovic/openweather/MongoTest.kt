@@ -34,7 +34,7 @@ class MongoTest : BaseTest() {
 
         //delete entity and check if they were removed
         repo.deleteAll().block()
-        assertNull(repo.findAll().blockFirst(), "Entities were not deleted from the current weather collection")
+        assertNull(repo.findAll().blockFirst(), "Entities are not deleted from the current weather collection")
 
         LOGGER.info("Ending test ${testInfo.displayName}\n")
     }

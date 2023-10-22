@@ -2,9 +2,9 @@ import org.gradle.util.internal.VersionNumber.version
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version ("3.2.0-M3")
-    kotlin("jvm") version "1.9.20-RC"
-    kotlin("plugin.spring") version "1.9.20-RC"
+    id("org.springframework.boot") version (libs.versions.org.springframework.boot) apply (false)
+    kotlin("jvm") version libs.versions.org.jetbrains.kotlin
+    kotlin("plugin.spring") version libs.versions.org.jetbrains.kotlin
 }
 
 apply(
@@ -17,14 +17,13 @@ repositories {
         setUrl("https://repo.spring.io/milestone")
     }
     dependencies {
-        implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20-RC")
+        implementation(platform(libs.kotlin.gradle.plugin))
     }
 }
 
 dependencies {
-    implementation(platform("org.springframework.boot:spring-boot-dependencies:3.2.0-M3"))
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20-RC")
-
+    implementation(platform(libs.spring.boot.dependencies))
+    implementation(platform(libs.kotlin.gradle.plugin))
 }
 
 tasks.test {
