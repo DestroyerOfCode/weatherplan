@@ -1,5 +1,6 @@
-import org.gradle.util.internal.VersionNumber.version
+import org.gradle.util.internal.VersionNumber
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("org.springframework.boot") version (libs.versions.org.springframework.boot) apply (false)
@@ -16,14 +17,15 @@ repositories {
     maven {
         setUrl("https://repo.spring.io/milestone")
     }
-    dependencies {
-        implementation(platform(libs.kotlin.gradle.plugin))
-    }
 }
 
 dependencies {
     implementation(platform(libs.spring.boot.dependencies))
-    implementation(platform(libs.kotlin.gradle.plugin))
+    implementation(libs.kotlin.gradle.plugin)
+}
+
+tasks.named<BootJar>("bootJar") {
+    enabled = false
 }
 
 tasks.test {
@@ -44,6 +46,6 @@ tasks.withType<KotlinCompile> {
 kotlin {
     jvmToolchain(21)
     compilerOptions {
-        version(21)
+        VersionNumber.version(21)
     }
 }
