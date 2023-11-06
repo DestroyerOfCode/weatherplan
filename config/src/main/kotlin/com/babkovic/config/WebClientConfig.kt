@@ -16,6 +16,7 @@ class WebClientConfig(private val properties: WeatherProperties) {
     fun webClientBuilder(): WebClient.Builder {
         return WebClient.builder()
     }
+
     @Bean(name = ["currentWeatherWebClient"])
     fun webClient(builder: WebClient.Builder): WebClient {
         val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.weatherPlanOpenUrl)

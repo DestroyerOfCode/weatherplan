@@ -23,6 +23,7 @@ class OpenWeatherServiceImpl(
     companion object {
         private val LOGGER: Logger = LoggerFactory.getLogger(OpenWeatherServiceImpl::class.java)
     }
+
     override fun getCurrentWeatherFromOpenWeatherByCityIds(): Flux<CurrentWeather> {
         val cities: List<City> = getCityCoords()
         LOGGER.info("Starting communication with openweatherapi.org")

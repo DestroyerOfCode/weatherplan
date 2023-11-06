@@ -18,6 +18,7 @@ class CurrentWeatherJacksonConfig {
 
         return objectMapper
     }
+
     private fun registerCurrentWeather(objectMapper: ObjectMapper) {
         val module = SimpleModule()
         module.addDeserializer(CurrentWeather::class.java, CurrentWeatherDeserializer())

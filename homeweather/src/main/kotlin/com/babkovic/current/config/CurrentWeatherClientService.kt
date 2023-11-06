@@ -3,7 +3,6 @@ package com.babkovic.current.config
 import com.babkovic.current.model.domain.CurrentWeather
 import org.jetbrains.annotations.NotNull
 import org.springframework.http.MediaType
-import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.service.annotation.GetExchange
@@ -17,6 +16,7 @@ import reactor.core.publisher.Mono
 interface CurrentWeatherClientService {
     @GetExchange
     fun currentWeathers(@NotNull @RequestParam lat: Double, @NotNull @RequestParam lon: Double): Mono<CurrentWeather>
+
     @GetExchange("/all")
     fun currentWeathers(): Flux<CurrentWeather>
 
