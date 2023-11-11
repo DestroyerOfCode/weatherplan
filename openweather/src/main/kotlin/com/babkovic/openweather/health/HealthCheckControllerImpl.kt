@@ -1,4 +1,4 @@
-package com.babkovic.health
+package com.babkovic.openweather.health
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.RestController

@@ -1,4 +1,4 @@
-package com.babkovic.health
+package com.babkovic.openweather.health
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach

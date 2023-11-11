@@ -1,4 +1,4 @@
-package com.babkovic
+package com.babkovic.current
 
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance

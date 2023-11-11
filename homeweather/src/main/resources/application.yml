@@ -1,0 +1,14 @@
+server:
+  port: 8082
+spring:
+  data:
+    mongodb:
+      port: 27017
+      username: "user"
+      password: "pass"
+      host: "localhost"
+      database: "weather"
+      authentication-database: "admin"
+weather:
+  open-weather-api-url: "https://api.openweathermap.org/data/3.0/onecall"
+  weather-plan-open-url: "http://localhost:8080/api/open/current"

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
-@RequestMapping("/current")
+@RequestMapping("/api/home/current")
 @ResponseBody
 interface CurrentWeatherController {
     @PostMapping("/save")

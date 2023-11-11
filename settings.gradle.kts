@@ -19,3 +19,5 @@ rootProject.name = "weatherplan"
 include("config")
 include("openweather")
 include("homeweather")
+include("smssender")
+include("apigateway")

@@ -1,0 +1,10 @@
+server:
+  port: 8081
+twilio:
+  twilio:
+    accountSid: ${ACCOUNT_SID} #your account sid
+    authToken: ${AUTH_TOKEN} #your auth token
+    trialNumber: ${TRIAL_NUMBER} # your trial number
+messenger:
+  schema: "http"
+  sub-domain: "localhost"

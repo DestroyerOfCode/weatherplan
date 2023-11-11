@@ -1,6 +1,6 @@
-package com.babkovic.openweather
+package com.babkovic.current.db
 
-import com.babkovic.BaseTest
+import com.babkovic.current.BaseTest
 import com.babkovic.current.model.domain.Current
 import com.babkovic.current.model.domain.CurrentWeather
 import com.babkovic.current.model.repository.CurrentWeatherRepository

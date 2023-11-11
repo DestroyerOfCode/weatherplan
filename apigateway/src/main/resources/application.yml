@@ -1,0 +1,27 @@
+server:
+  port: 8083
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: smssender-route
+          uri: ${SMSSENDER_ROUTE_URI:http://localhost:8081}
+          predicates:
+            - Path=/twilio/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By,Gateway Service
+        - id: openweather-route
+          uri: ${OPENWEATHER_ROUTE_URI:http://localhost:8080}
+          predicates:
+            - Path=/open/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By,Gateway Service
+        - id: homeweather-route
+          uri: ${HOMEWEATHER_ROUTE_URI:http://localhost:8082}
+          predicates:
+            - Path=/open/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By,Gateway Service

@@ -1,7 +1,7 @@
 package com.babkovic.openweather.controller
 
 import com.babkovic.current.model.domain.CurrentWeather
-import com.babkovic.openweather.service.OpenWeatherService
+import com.babkovic.openweather.service.IOpenWeatherService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.http.ResponseEntity.ok
@@ -12,16 +12,16 @@ import reactor.core.publisher.Mono
 
 @RestController
 @ResponseBody
-class OpenWeatherControllerImpl(@Autowired private val service: OpenWeatherService) : OpenWeatherController {
+class OpenWeatherControllerImpl(@Autowired private val service: IOpenWeatherService) : OpenWeatherController {
     override fun test(): ResponseEntity<String> {
         return ok("test")
     }
 
-    override fun getCurrentWeatherFromOpenWeatherByCityIds(): ResponseEntity<Flux<CurrentWeather>> {
+    override fun getCurrentWeatherFromOpenWeather(): ResponseEntity<Flux<CurrentWeather>> {
         return ok(service.getCurrentWeatherFromOpenWeatherByCityIds())
     }
 
-    override fun getCurrentWeatherFromOpenWeatherByCityId(
+    override fun getCurrentWeatherFromOpenWeatherByCoords(
         lat: Double,
         lon: Double
     ): ResponseEntity<Mono<CurrentWeather>> {

@@ -16,10 +16,21 @@ class RestClientConfig(private val properties: WeatherProperties) {
 
     @Bean(name = ["openWeatherRestClient"])
     fun openWeatherClient(restClientBuilder: RestClient.Builder): RestClient {
-        print("appid: " + System.getenv("appid") + "\n")
+        println("appid:${System.getenv("appid")}")
         val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl)
             .queryParam(APP_ID, System.getenv("appid"))
 
+        val restClient = restClientBuilder.uriBuilderFactory(
+            DefaultUriBuilderFactory(componentsBuilder)
+        )
+            .build()
+
+        return restClient
+    }
+
+    @Bean(name = ["twilioRestClient"])
+    fun twilioRestClient(restClientBuilder: RestClient.Builder): RestClient {
+        val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl)
         val restClient = restClientBuilder.uriBuilderFactory(
             DefaultUriBuilderFactory(componentsBuilder)
         )

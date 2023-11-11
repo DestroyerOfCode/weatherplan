@@ -1,10 +1,10 @@
-package com.babkovic.health
+package com.babkovic.openweather.health
 
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 
-@RequestMapping("/health")
+@RequestMapping("/api/health")
 interface HealthCheckController {
 
     @GetMapping

@@ -1,0 +1,6 @@
+server:
+  port: 8082
+weather:
+  home-weather:
+    schema: "http"
+    sub-domain: "localhost"

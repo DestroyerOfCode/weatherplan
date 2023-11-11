@@ -13,11 +13,11 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.core.scheduler.Schedulers
 
-@Service
+@CurrentWeatherService
 class CurrentWeatherServiceImpl(
     @Autowired private val client: CurrentWeatherClientService,
     @Autowired private val repository: CurrentWeatherRepository
-) : CurrentWeatherService {
+) : ICurrentWeatherService {
 
     companion object {
         private val LOGGER: Logger = LoggerFactory.getLogger(CurrentWeatherServiceImpl::class.java)

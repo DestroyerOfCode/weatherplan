@@ -8,17 +8,16 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import reactor.kotlin.core.publisher.toFlux
 import reactor.kotlin.core.publisher.toMono
 
-@Service
+@OpenWeatherService
 class OpenWeatherServiceImpl(
     @Autowired private val client: OpenWeatherClientService,
     @Autowired private val objectMapper: ObjectMapper
-) : OpenWeatherService {
+) : IOpenWeatherService {
 
     companion object {
         private val LOGGER: Logger = LoggerFactory.getLogger(OpenWeatherServiceImpl::class.java)

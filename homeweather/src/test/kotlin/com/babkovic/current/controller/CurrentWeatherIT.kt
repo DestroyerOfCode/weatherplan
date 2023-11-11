@@ -1,6 +1,6 @@
-package com.babkovic.current
+package com.babkovic.current.controller
 
-import com.babkovic.BaseTest
+import com.babkovic.current.BaseTest
 import com.babkovic.current.model.domain.CurrentWeather
 import com.babkovic.current.model.repository.CurrentWeatherRepository
 import org.junit.jupiter.api.AfterEach
@@ -34,7 +34,7 @@ class CurrentWeatherIT : BaseTest() {
 
         //given and when
         val resFlux = client.post()
-            .uri("current/save?lat=49.136372&lon=20.24386")
+            .uri("${BASE_URL}api/home/current/save?lat=49.136372&lon=20.24386")
             .accept(MediaType.APPLICATION_NDJSON)
             .exchange()
             .expectStatus().isOk

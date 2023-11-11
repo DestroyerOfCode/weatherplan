@@ -40,6 +40,8 @@ dependencies {
 
     //testing
     testImplementation(kotlin("test"))
+    testImplementation(libs.bundles.web.test.reactive)
+    testImplementation(libs.bundles.testcontainers)
 }
 
 java {
