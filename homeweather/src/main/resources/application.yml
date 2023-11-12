@@ -9,6 +9,8 @@ spring:
       host: "localhost"
       database: "weather"
       authentication-database: "admin"
+  application:
+    name: "homeweather"
 weather:
   open-weather-api-url: "https://api.openweathermap.org/data/3.0/onecall"
-  weather-plan-open-url: "http://localhost:8080/api/open/current"
+  weather-plan-open-url: "http://localhost:8083/open/current"

@@ -23,7 +23,7 @@ class OpenWeatherControllerIT : BaseTest() {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         //given and when
-        val url = "$BASE_URL/api/open/current?lat=49.136372&lon=20.24386"
+        val url = "$GATEWAY_URL/open/current?lat=49.136372&lon=20.24386"
         val resultFlux: FluxExchangeResult<CurrentWeather> = callCurrentWeatherFlux(url)
 
         //then
@@ -48,7 +48,7 @@ class OpenWeatherControllerIT : BaseTest() {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         //given and when
-        val url = "$BASE_URL/api/open/current/all"
+        val url = "$GATEWAY_URL/open/current/all"
         val resFlux: FluxExchangeResult<CurrentWeather> = callCurrentWeatherFlux(url)
 
         //then

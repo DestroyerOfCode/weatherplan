@@ -19,7 +19,6 @@ import java.time.temporal.ChronoUnit.MINUTES
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
-@Testcontainers
 class BaseTest {
 
     companion object {
@@ -28,18 +27,12 @@ class BaseTest {
         @JvmStatic
         protected lateinit var BASE_URL: String
 
-        @ServiceConnection
-        var mongoDBContainer = MongoDBContainer(DockerImageName.parse("mongo:7"))
+        @JvmStatic
+        protected lateinit var GATEWAY_URL: String
     }
 
-    /**
-     * If you try to start the container with @Container, it won`t start, hence taking the lifecycle
-     * to your own hands solves the issue.
-     * Moreover, if you try to start web environment on random port, the client won`t load correctly
-     */
-    init {
-        mongoDBContainer.start()
-    }
+    @Value("\${gateway.port}")
+    protected lateinit var gatewayPort: String
 
     @Value("\${server.port}")
     private lateinit var serverPort: String
@@ -61,13 +54,14 @@ class BaseTest {
             |server port: $serverPort
             """.trimMargin()
         )
-        BASE_URL = createBaseURL()
+        BASE_URL = createBaseURL(serverPort)
+        GATEWAY_URL = createBaseURL(gatewayPort)
         client = WebTestClient.bindToServer().baseUrl(BASE_URL)
             .responseTimeout(Duration.of(1, MINUTES)).build()
     }
 
-    private fun createBaseURL(): String {
-        return "$schema://$subDomain:$serverPort"
+    private fun createBaseURL(port: String): String {
+        return "$schema://$subDomain:$port"
     }
 
 

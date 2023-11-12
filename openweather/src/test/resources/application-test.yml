@@ -1,6 +1,11 @@
 server:
-  port: 8089
+  port: 8080
 weather:
   home-weather:
     schema: "http"
     sub-domain: "localhost"
+spring:
+  application:
+    name: "openweather-test"
+gateway:
+  port: "8083"

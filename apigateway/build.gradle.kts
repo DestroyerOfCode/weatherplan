@@ -24,10 +24,13 @@ repositories {
 
 dependencies {
     //spring
-    implementation(libs.springdoc.openapi.starter.webmvc.ui)
-    implementation("org.springframework.cloud:spring-cloud-gateway:4.0.8")
-
+    implementation(platform(libs.spring.boot.dependencies))
+    implementation(platform(libs.spring.cloud.dependencies))
+    implementation(libs.spring.boot.starter.webflux)
+    implementation(libs.spring.cloud.gateway)
+    implementation(libs.spring.cloud.starter.gateway)
 }
+
 
 tasks.test {
     useJUnitPlatform()

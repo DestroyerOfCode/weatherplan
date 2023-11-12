@@ -4,3 +4,8 @@ weather:
   home-weather:
     schema: "http"
     sub-domain: "localhost"
+spring:
+  application:
+    name: "homeweather-test"
+gateway:
+  port: 8083

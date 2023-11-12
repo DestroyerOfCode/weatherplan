@@ -49,7 +49,7 @@ class TwilioControllerImplIT : BaseTest() {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         //given
-        val url = "$BASE_URL/twilio/bulk/send"
+        val url = "$GATEWAY_URL/twilio/bulk/send"
 
         //when & then
         assertDoesNotThrow({

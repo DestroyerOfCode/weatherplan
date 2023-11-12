@@ -8,6 +8,8 @@ org-jetbrains-kotlinx = "1.7.3"
 #spring
 org-springframework-boot = "3.2.0-RC2"
 org-springdoc = "2.2.0"
+org-springframework-cloud = "4.1.0-RC1"
+org-springframework-cloud-deps = "2023.0.0-RC1"
 
 #testcontainers
 org-testcontainers = "1.19.1"
@@ -32,6 +34,7 @@ kotlinx-coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 #spring
 spring-boot-dependencies = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "org-springframework-boot" }
+spring-cloud-dependencies = { group = "org.springframework.cloud", name = "spring-cloud-dependencies", version.ref = "org-springframework-cloud-deps" }
 spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
@@ -39,6 +42,8 @@ spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spri
 spring-boot-starter-data-mongodb-reactive = { group = "org.springframework.boot", name = "spring-boot-starter-data-mongodb-reactive" }
 spring-boot-testcontainers = { group = "org.springframework.boot", name = "spring-boot-testcontainers" }
 springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "org-springdoc" }
+spring-cloud-gateway = { group = "org.springframework.cloud", name = "spring-cloud-gateway", version.ref = "org-springframework-cloud" }
+spring-cloud-starter-gateway = { group = "org.springframework.cloud", name = "spring-cloud-starter-gateway", version.ref = "org-springframework-cloud" }
 
 #testcontainers
 testcontainers-junit-jupiter = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "org-testcontainers" }

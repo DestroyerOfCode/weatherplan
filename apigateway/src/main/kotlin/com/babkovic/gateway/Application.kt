@@ -1,8 +1,8 @@
 package com.babkovic.gateway
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-
-@SpringBootApplication
+import org.springframework.boot.cloud.CloudPlatform
+@SpringBootApplication(scanBasePackages = ["com.babkovic.gateway"])
 class Application {
 
 

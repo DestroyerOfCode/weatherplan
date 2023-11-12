@@ -34,7 +34,7 @@ class CurrentWeatherIT : BaseTest() {
 
         //given and when
         val resFlux = client.post()
-            .uri("${BASE_URL}api/home/current/save?lat=49.136372&lon=20.24386")
+            .uri("${GATEWAY_URL}/home/current/save?lat=49.136372&lon=20.24386")
             .accept(MediaType.APPLICATION_NDJSON)
             .exchange()
             .expectStatus().isOk
@@ -64,7 +64,7 @@ class CurrentWeatherIT : BaseTest() {
 
         //given and when
         val resFlux = client.post()
-            .uri("current/bulk/save")
+            .uri("${GATEWAY_URL}/home/current/bulk/save")
             .accept(MediaType.APPLICATION_NDJSON)
             .exchange()
             .expectStatus().isOk

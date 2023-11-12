@@ -21,7 +21,7 @@ spring:
         - id: homeweather-route
           uri: ${HOMEWEATHER_ROUTE_URI:http://localhost:8082}
           predicates:
-            - Path=/open/**
+            - Path=/home/**
           filters:
             - PrefixPath=/api
             - AddResponseHeader=X-Powered-By,Gateway Service

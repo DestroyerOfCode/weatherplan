@@ -28,6 +28,9 @@ class BaseTest {
         @JvmStatic
         protected lateinit var BASE_URL: String
 
+        @JvmStatic
+        protected lateinit var GATEWAY_URL: String
+
         @ServiceConnection
         var mongoDBContainer = MongoDBContainer(DockerImageName.parse("mongo:7"))
     }
@@ -40,6 +43,9 @@ class BaseTest {
     init {
         mongoDBContainer.start()
     }
+
+    @Value("\${gateway.port}")
+    private lateinit var gatewayPort: String
 
     @Value("\${server.port}")
     private lateinit var serverPort: String
@@ -61,13 +67,14 @@ class BaseTest {
             |server port: $serverPort
             """.trimMargin()
         )
-        BASE_URL = createBaseURL()
+        BASE_URL = createBaseURL(serverPort)
+        GATEWAY_URL = createBaseURL(gatewayPort)
         client = WebTestClient.bindToServer().baseUrl(BASE_URL)
             .responseTimeout(Duration.of(1, MINUTES)).build()
     }
 
-    private fun createBaseURL(): String {
-        return "$schema://$subDomain:$serverPort/"
+    private fun createBaseURL(port: String): String {
+        return "$schema://$subDomain:$port"
     }
 
 

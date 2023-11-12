@@ -8,3 +8,5 @@ twilio:
 messenger:
   schema: "http"
   sub-domain: "localhost"
+gateway:
+  port: "8083"
