@@ -7,5 +7,5 @@ import reactor.core.publisher.Mono
 
 interface ITwilioService {
     fun sendCurrentWeatherSms(): Unit
-    fun sendCurrentWeatherSms(user: User, weather: CurrentWeather) : Mono<Message>
+    fun sendCurrentWeatherSms(user: User, weather: CurrentWeather): Mono<Message>
 }

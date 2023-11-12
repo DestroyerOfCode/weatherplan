@@ -3,7 +3,6 @@ package com.babkovic.openweather
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
-import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories
 
 @SpringBootApplication(scanBasePackages = ["com.babkovic.openweather", "com.babkovic.config"])
 @ConfigurationPropertiesScan("com.babkovic.config")
