@@ -25,6 +25,9 @@ org-mockito = "5.0.0"
 spring-test = "6.1.0-M5"
 com-fasterxml-jackson-core = "2.15.2"
 
+#3rd parties
+com-twilio-sdk = "10.0.0-rc.5"
+
 [libraries]
 #kotlin
 reactor-kotlin-extensions = { group = "io.projectreactor.kotlin", name = "reactor-kotlin-extensions", version.ref = "io-projectreactor-kotlin" }
@@ -63,6 +66,9 @@ junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.r
 mockito = { group = "org.mockito", name = "mockito-core", version.ref = "org-mockito" }
 spring-test = { group = "org.springframework", name = "spring-test", version.ref = "spring-test" }
 reactor-test = { group = "io.projectreactor", name = "reactor-test", version.ref = "io-projectreactor" }
+
+#3rd parties
+twilio = {group = "com.twilio.sdk", name = "twilio", version.ref = "com-twilio-sdk"}
 
 [bundles]
 web-test = ["junit-jupiter", "mockito", "spring-test", "spring-boot-starter-test"]

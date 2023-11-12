@@ -1,7 +1,7 @@
 package com.babkovic.openweather.service
 
-import com.babkovic.current.exception.CurrentWeatherException
-import com.babkovic.current.model.domain.CurrentWeather
+import com.babkovic.home.current.exception.CurrentWeatherException
+import com.babkovic.home.current.model.domain.CurrentWeather
 import com.babkovic.openweather.config.OpenWeatherClientService
 import com.babkovic.openweather.model.domain.City
 import com.fasterxml.jackson.databind.ObjectMapper

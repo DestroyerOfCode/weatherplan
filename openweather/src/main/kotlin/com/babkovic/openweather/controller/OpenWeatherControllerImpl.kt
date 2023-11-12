@@ -1,6 +1,6 @@
 package com.babkovic.openweather.controller
 
-import com.babkovic.current.model.domain.CurrentWeather
+import com.babkovic.home.current.model.domain.CurrentWeather
 import com.babkovic.openweather.service.IOpenWeatherService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity

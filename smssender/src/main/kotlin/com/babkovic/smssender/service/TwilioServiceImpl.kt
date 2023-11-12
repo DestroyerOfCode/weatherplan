@@ -1,7 +1,7 @@
 package com.babkovic.smssender.service
 
-import com.babkovic.current.model.domain.CurrentWeather
-import com.babkovic.openweather.controller.OpenWeatherController
+import com.babkovic.home.current.model.domain.CurrentWeather
+import com.babkovic.smssender.config.TwilioClientService
 import com.babkovic.smssender.config.TwilioProperties
 import com.babkovic.smssender.model.domain.User
 import com.babkovic.smssender.model.repository.UserRepository
@@ -16,18 +16,16 @@ import reactor.core.scheduler.Schedulers
 class TwilioServiceImpl(
     @Autowired private val twilioProperties: TwilioProperties,
     @Autowired private val userRepository: UserRepository,
-    @Autowired private val openWeatherController: OpenWeatherController
+    @Autowired private val webClient: TwilioClientService
 ) : ITwilioService {
 
 
     override fun sendCurrentWeatherSms() {
         userRepository.findAll()
             .flatMap { user ->
-                openWeatherController.getCurrentWeatherFromOpenWeatherByCoords(user.coord.lat, user.coord.lon)
-                    .body
-                    ?.publishOn(Schedulers.boundedElastic())
-                    ?.doOnNext { weather -> sendCurrentWeatherSms(user, weather).subscribe() }
-                    ?: Mono.empty() // If null or empty response, return empty Mono
+                webClient.currentWeathers(user.coord.lat, user.coord.lon)
+                    .publishOn(Schedulers.boundedElastic())
+                    .doOnNext { weather -> sendCurrentWeatherSms(user, weather).subscribe() }
             }
             .subscribe()
     }
@@ -38,6 +36,8 @@ class TwilioServiceImpl(
         val creator: MessageCreator =
             Message.creator(PhoneNumber(user.phoneNumber), phoneNumberFrom, "" + (weather.current.feelsLike))
 
-        return Mono.just(creator.create())
+        val message = creator.create()
+        return Mono.just(message)
+
     }
 }

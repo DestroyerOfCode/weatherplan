@@ -3,6 +3,7 @@ package com.babkovic.config
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.reactive.ReactorClientHttpConnector
+import org.springframework.web.client.RestClient
 import org.springframework.web.reactive.function.client.WebClient
 import org.springframework.web.util.DefaultUriBuilderFactory
 import org.springframework.web.util.UriComponentsBuilder
@@ -27,6 +28,17 @@ class WebClientConfig(private val properties: WeatherProperties) {
             ReactorClientHttpConnector(
                 HttpClient.create().responseTimeout(Duration.of(60000L, MILLIS))
             )
+        )
+            .build()
+
+        return webClient
+    }
+
+    @Bean(name = ["twilioWebClient"])
+    fun twilioWebClient(webClientBuilder: WebClient.Builder): WebClient {
+        val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl)
+        val webClient = webClientBuilder.uriBuilderFactory(
+            DefaultUriBuilderFactory(componentsBuilder)
         )
             .build()
 

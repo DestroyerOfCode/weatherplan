@@ -1,6 +1,5 @@
 import org.gradle.util.internal.VersionNumber
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 
 plugins {
@@ -26,11 +25,8 @@ repositories {
 dependencies {
     //dependent projects
     implementation(project(":config"))
-    implementation(project(":openweather"))
     implementation(project(":homeweather"))
 
-    //twilio
-    implementation("com.twilio.sdk:twilio:10.0.0-rc.5")
 
     //spring
     implementation(libs.spring.boot.starter)
@@ -43,6 +39,9 @@ dependencies {
     testImplementation(kotlin("test"))
     testApi(libs.bundles.web.test)
     testImplementation(libs.bundles.testcontainers)
+
+    //3rd parties
+    implementation(libs.twilio)
 }
 
 java {

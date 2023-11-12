@@ -1,6 +1,5 @@
 package com.babkovic.smssender.model.domain
 
-import com.babkovic.openweather.model.domain.Coord
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.Id

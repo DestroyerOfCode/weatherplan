@@ -1,7 +1,7 @@
 package com.babkovic.smssender.controller
 
 import BaseTest
-import com.babkovic.openweather.model.domain.Coord
+import com.babkovic.smssender.model.domain.Coord
 import com.babkovic.smssender.model.domain.User
 import com.babkovic.smssender.model.repository.UserRepository
 import org.bson.types.ObjectId

@@ -27,15 +27,4 @@ class RestClientConfig(private val properties: WeatherProperties) {
 
         return restClient
     }
-
-    @Bean(name = ["twilioRestClient"])
-    fun twilioRestClient(restClientBuilder: RestClient.Builder): RestClient {
-        val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl)
-        val restClient = restClientBuilder.uriBuilderFactory(
-            DefaultUriBuilderFactory(componentsBuilder)
-        )
-            .build()
-
-        return restClient
-    }
 }

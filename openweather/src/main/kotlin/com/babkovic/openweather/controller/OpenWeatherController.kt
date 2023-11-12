@@ -1,6 +1,6 @@
 package com.babkovic.openweather.controller
 
-import com.babkovic.current.model.domain.CurrentWeather
+import com.babkovic.home.current.model.domain.CurrentWeather
 import org.jetbrains.annotations.NotNull
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity

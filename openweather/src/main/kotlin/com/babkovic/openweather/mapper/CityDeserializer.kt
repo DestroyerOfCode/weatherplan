@@ -1,7 +1,7 @@
 package com.babkovic.openweather.mapper
 
-import com.babkovic.current.exception.CurrentWeatherException
-import com.babkovic.current.mapper.CurrentWeatherDeserializer
+import com.babkovic.home.current.exception.CurrentWeatherException
+import com.babkovic.home.current.mapper.CurrentWeatherDeserializer
 import com.babkovic.openweather.model.domain.City
 import com.babkovic.openweather.model.domain.Coord
 import com.fasterxml.jackson.core.JsonParser
