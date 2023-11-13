@@ -8,3 +8,12 @@ twilio:
 messenger:
   schema: "http"
   sub-domain: "localhost"
+spring:
+  data:
+    mongodb:
+      port: 27017
+      username: "user"
+      password: "pass"
+      host: ${MONGO:localhost}
+      database: "weather"
+      authentication-database: "admin"

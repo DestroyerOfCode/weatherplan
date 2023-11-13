@@ -1,5 +1,13 @@
 server:
   port: 8083
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: on
 spring:
   cloud:
     gateway:
@@ -25,3 +33,7 @@ spring:
           filters:
             - PrefixPath=/api
             - AddResponseHeader=X-Powered-By,Gateway Service
+      metrics:
+        enabled: on
+  application:
+    name: apigateway

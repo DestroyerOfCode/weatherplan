@@ -1,6 +1,5 @@
 import org.gradle.util.internal.VersionNumber
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("org.springframework.boot") version (libs.versions.org.springframework.boot) apply (false)
@@ -57,10 +56,6 @@ tasks.withType<KotlinCompile> {
 
 tasks.test {
     useJUnitPlatform()
-}
-
-tasks.named<BootJar>("bootJar") {
-    enabled = false
 }
 
 kotlin {

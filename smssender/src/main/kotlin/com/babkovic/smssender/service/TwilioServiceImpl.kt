@@ -36,8 +36,9 @@ class TwilioServiceImpl(
         val creator: MessageCreator =
             Message.creator(PhoneNumber(user.phoneNumber), phoneNumberFrom, "" + (weather.current.feelsLike))
 
-        val message = creator.create()
-        return Mono.just(message)
-
+        //this is because I have only trial account and dont want to spend money
+//        val message = creator.create()
+//        return Mono.just(message)
+        return Mono.empty()
     }
 }

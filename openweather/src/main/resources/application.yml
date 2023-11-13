@@ -6,3 +6,11 @@ weather:
 spring:
   application:
     name: "openweather"
+  data:
+    mongodb:
+      port: 27017
+      username: "user"
+      password: "pass"
+      host: ${MONGO:localhost}
+      database: "weather"
+      authentication-database: "admin"

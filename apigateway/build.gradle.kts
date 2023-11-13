@@ -29,6 +29,10 @@ dependencies {
     implementation(libs.spring.boot.starter.webflux)
     implementation(libs.spring.cloud.gateway)
     implementation(libs.spring.cloud.starter.gateway)
+    implementation(libs.spring.boot.starter.actuator)
+    //logging
+    implementation(libs.bundles.logging)
+    implementation(libs.logback.classic)
 }
 
 

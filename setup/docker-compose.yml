@@ -3,8 +3,68 @@ services:
   mongodb:
     container_name: "mongo-db"
     image: mongodb/mongodb-community-server:6.0.4-ubi8
+    restart: always
+    env_file:
+      - .env
     environment:
       - MONGO_INITDB_ROOT_USERNAME=user
       - MONGO_INITDB_ROOT_PASSWORD=pass
+    networks:
+      - weather-network
     ports:
       - "27017:27017"
+  homeweather:
+    container_name: homeweather-service
+    image: homeweather:1.0-SNAPSHOT
+    env_file:
+      - .env
+    environment:
+      - MONGO=mongo-db
+    networks:
+      - weather-network
+    ports:
+      - "8082:8082"
+  openweather:
+    container_name: openweather-service
+    image: openweather:1.0-SNAPSHOT
+    env_file:
+      - .env
+    environment:
+      - appid=${appid}
+      - MONGO=mongo-db
+    networks:
+      - weather-network
+    ports:
+      - "8080:8080"
+  smssender:
+    container_name: smssender-service
+    image: smssender:1.0-SNAPSHOT
+    env_file:
+      - .env
+    environment:
+      - ACCOUNT_SID=${ACCOUNT_SID}
+      - AUTH_TOKEN=${AUTH_TOKEN}
+      - TRIAL_NUMBER=${TRIAL_NUMBER}
+      - appid=${appid}
+      - MONGO=mongo-db
+    networks:
+      - weather-network
+    ports:
+      - "8081:8081"
+  apigateway:
+    container_name: apigateway-service
+    image: apigateway:1.0-SNAPSHOT
+    env_file:
+      - .env
+    environment:
+      - OPENWEATHER_ROUTE_URI=http://openweather-service:8080
+      - SMSSENDER_ROUTE_URI=http://smssender-service:8081
+      - HOMEWEATHER_ROUTE_URI=http://homeweather-service:8082
+    networks:
+      - weather-network
+    ports:
+      - "8083:8083"
+networks:
+  weather-network:
+    name: "weather-network"
+    driver: bridge
