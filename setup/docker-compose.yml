@@ -20,6 +20,7 @@ services:
       - .env
     environment:
       - MONGO=mongo-db
+      - OPEN_WEATHER_URL=http://openweather-service:8080/api/open/current
     networks:
       - weather-network
     ports:
