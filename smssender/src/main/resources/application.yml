@@ -1,13 +1,6 @@
 server:
-  port: 8081
-twilio:
-  twilio:
-    accountSid: ${ACCOUNT_SID}
-    authToken: ${AUTH_TOKEN}
-    trialNumber: ${TRIAL_NUMBER}
-messenger:
-  schema: "http"
-  sub-domain: "localhost"
+  port: ${SERVER_PORT:8081}
+  address: ${SERVER_ADDRESS:localhost}
 spring:
   data:
     mongodb:
@@ -19,3 +12,11 @@ spring:
       authentication-database: "admin"
   application:
     name: "smssender"
+twilio:
+  twilio:
+    accountSid: ${ACCOUNT_SID}
+    authToken: ${AUTH_TOKEN}
+    trialNumber: ${TRIAL_NUMBER}
+messenger:
+  schema: "http"
+  sub-domain: "localhost"

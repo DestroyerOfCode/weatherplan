@@ -7,42 +7,48 @@ services:
     env_file:
       - .env
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=user
-      - MONGO_INITDB_ROOT_PASSWORD=pass
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
     networks:
       - weather-network
     ports:
-      - "27017:27017"
+      - ${MONGODB_SERVER_PORT}:${MONGODB_SERVER_PORT}
   homeweather:
     container_name: homeweather-service
     image: homeweather:1.0-SNAPSHOT
     env_file:
       - .env
     environment:
+      - SERVER_PORT=${HOMEWEATHER_SERVER_PORT}
+      - SERVER_ADDRESS=${HOMEWEATHER_SERVER_ADDRESS}
       - MONGO=mongo-db
-      - OPEN_WEATHER_URL=http://openweather-service:8080/api/open/current
+      - OPEN_WEATHER_URL=http://${OPENWEATHER_SERVER_ADDRESS}:${OPENWEATHER_SERVER_PORT}/api/open/current
     networks:
       - weather-network
     ports:
-      - "8082:8082"
+      - ${HOMEWEATHER_SERVER_PORT}:${HOMEWEATHER_SERVER_PORT}
   openweather:
     container_name: openweather-service
     image: openweather:1.0-SNAPSHOT
     env_file:
       - .env
     environment:
-      - appid=${appid}
+      - SERVER_PORT=OPENWEATHER_SERVER_PORT
+      - SERVER_ADDRESS=${OPENWEATHER_SERVER_ADDRESS}
       - MONGO=mongo-db
+      - appid=${appid}
     networks:
       - weather-network
     ports:
-      - "8080:8080"
+      - ${OPENWEATHER_SERVER_PORT}:${OPENWEATHER_SERVER_PORT}
   smssender:
     container_name: smssender-service
     image: smssender:1.0-SNAPSHOT
     env_file:
       - .env
     environment:
+      - SERVER_PORT=${SMSSENDER_SERVER_PORT}
+      - SERVER_ADDRESS=${SMSSENDER_SERVER_ADDRESS}
       - ACCOUNT_SID=${ACCOUNT_SID}
       - AUTH_TOKEN=${AUTH_TOKEN}
       - TRIAL_NUMBER=${TRIAL_NUMBER}
@@ -51,20 +57,22 @@ services:
     networks:
       - weather-network
     ports:
-      - "8081:8081"
+      - ${SMSSENDER_SERVER_PORT}:${SMSSENDER_SERVER_PORT}
   apigateway:
     container_name: apigateway-service
     image: apigateway:1.0-SNAPSHOT
     env_file:
       - .env
     environment:
-      - OPENWEATHER_ROUTE_URI=http://openweather-service:8080
-      - SMSSENDER_ROUTE_URI=http://smssender-service:8081
-      - HOMEWEATHER_ROUTE_URI=http://homeweather-service:8082
+      - SERVER_PORT:${APIGATEWAY_SERVER_PORT}
+      - SERVER_ADDRESS:${APIGATEWAY_SERVER_ADDRESS}
+      - OPENWEATHER_ROUTE_URI=http://${OPENWEATHER_SERVER_ADDRESS}:${OPENWEATHER_SERVER_PORT}
+      - SMSSENDER_ROUTE_URI=http://${SMSSENDER_SERVER_ADDRESS}:${SMSSENDER_SERVER_PORT}
+      - HOMEWEATHER_ROUTE_URI=http://${HOMEWEATHER_SERVER_ADDRESS}:${HOMEWEATHER_SERVER_PORT}
     networks:
       - weather-network
     ports:
-      - "8083:8083"
+      - ${APIGATEWAY_SERVER_PORT}:${APIGATEWAY_SERVER_PORT}
 networks:
   weather-network:
     name: "weather-network"

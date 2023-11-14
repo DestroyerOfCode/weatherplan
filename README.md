@@ -10,6 +10,12 @@ To run tests:
 appid={api key} ./gradlew clean build
 ```
 
+To make changes:
+
+```zsh
+./build-and-deploy
+```
+
 The service consists of 3 modules: Homeweather, Openweather, and Config.
 Openweather connects to openweathermap.org, and Homeweather talks to
 Openweather and reactively, in a non-blocking way, saves the
@@ -38,5 +44,5 @@ http POST :8083/home/current/save\?lat\=49.136372\&lon\=20.24386
 Get current weather by coords
 
 ```bash
-http :8083/open/home/current/getByCoords\?lat\=20.25\&lon\=49.14
+http :8083/open/current\?lat\=20.25\&lon\=49.14
 ```

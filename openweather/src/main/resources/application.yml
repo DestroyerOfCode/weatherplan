@@ -1,8 +1,9 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
+  address: ${SERVER_ADDRESS:localhost}
 weather:
   open-weather-api-url: "https://api.openweathermap.org/data/3.0/onecall"
-  weather-plan-open-url: "http://localhost:8083/open/current"
+  weather-plan-open-url: "http://${server.address}:${server.port}/open/current"
 spring:
   application:
     name: "openweather"
