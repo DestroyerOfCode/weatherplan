@@ -13,7 +13,6 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 )
 @EnableReactiveMongoRepositories(
     basePackages = [
-        "com.babkovic.home.current.model.repository",
         "com.babkovic.smssender.model.repository"
     ]
 )

@@ -2,9 +2,9 @@ server:
   port: 8081
 twilio:
   twilio:
-    accountSid: ${ACCOUNT_SID} #your account sid
-    authToken: ${AUTH_TOKEN} #your auth token
-    trialNumber: ${TRIAL_NUMBER} # your trial number
+    accountSid: ${ACCOUNT_SID}
+    authToken: ${AUTH_TOKEN}
+    trialNumber: ${TRIAL_NUMBER}
 messenger:
   schema: "http"
   sub-domain: "localhost"
@@ -17,3 +17,5 @@ spring:
       host: ${MONGO:localhost}
       database: "weather"
       authentication-database: "admin"
+  application:
+    name: "smssender"

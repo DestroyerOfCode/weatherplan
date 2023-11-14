@@ -20,23 +20,23 @@ request to get all users and get all their respective current weather by
 coords and send sms to their number
 
 ```bash
-curl -v http://localhost:8083/twilio/bulk/send  
+http :8083/twilio/bulk/send  
 ```
 
 Get all current weather by city names located in resource file
 
 ```bash
-curl -v http://localhost:8083/open/current/all
+http :8083/open/current/all
 ```
 
 Save the current weather in db currentWeather which you fetch from open weather module
 
 ```bash
-curl -X POST -v http://localhost:8083/home/current/save\?lat\=49.136372\&lon\=20.24386
+http POST :8083/home/current/save\?lat\=49.136372\&lon\=20.24386
 ```
 
 Get current weather by coords
 
 ```bash
-curl -v http://localhost:8083/open/home/current/getByCoords\?lat\=20.25\&lon\=49.14
+http :8083/open/home/current/getByCoords\?lat\=20.25\&lon\=49.14
 ```

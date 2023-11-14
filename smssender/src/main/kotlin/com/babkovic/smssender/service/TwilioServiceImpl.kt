@@ -24,9 +24,12 @@ class TwilioServiceImpl(
         userRepository.findAll()
             .flatMap { user ->
                 webClient.currentWeathers(user.coord.lat, user.coord.lon)
+                    .log()
                     .publishOn(Schedulers.boundedElastic())
                     .doOnNext { weather -> sendCurrentWeatherSms(user, weather).subscribe() }
+                    .log()
             }
+            .log()
             .subscribe()
     }
 

@@ -36,6 +36,7 @@ class WebClientConfig(private val properties: WeatherProperties) {
     @Bean(name = ["twilioWebClient"])
     fun twilioWebClient(webClientBuilder: WebClient.Builder): WebClient {
         val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl)
+            .queryParam(Constants.APP_ID, System.getenv("appid"))
         val webClient = webClientBuilder.uriBuilderFactory(
             DefaultUriBuilderFactory(componentsBuilder)
         )
