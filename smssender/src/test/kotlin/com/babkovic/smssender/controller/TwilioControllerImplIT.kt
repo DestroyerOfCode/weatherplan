@@ -1,6 +1,6 @@
 package com.babkovic.smssender.controller
 
-import BaseTest
+import com.babkovic.smssender.BaseTest
 import com.babkovic.smssender.model.domain.Coord
 import com.babkovic.smssender.model.domain.User
 import com.babkovic.smssender.model.repository.UserRepository
@@ -53,7 +53,7 @@ class TwilioControllerImplIT : BaseTest() {
 
         //when & then
         assertDoesNotThrow({
-            client.get()
+            client.post()
                 .uri(url)
                 .accept(MediaType.APPLICATION_JSON)
                 .exchange()

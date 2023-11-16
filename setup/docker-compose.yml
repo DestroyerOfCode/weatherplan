@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mongodb:
-    container_name: "mongo-db"
+    container_name: mongo-db
     image: mongodb/mongodb-community-server:6.0.4-ubi8
     restart: always
     env_file:
@@ -21,26 +21,39 @@ services:
     environment:
       - SERVER_PORT=${HOMEWEATHER_SERVER_PORT}
       - SERVER_ADDRESS=${HOMEWEATHER_SERVER_ADDRESS}
+      - APIGATEWAY_SERVER_PORT=${APIGATEWAY_SERVER_PORT}
+      - APIGATEWAY_SERVER_ADDRESS=${APIGATEWAY_SERVER_ADDRESS}
+      - DB_NAME=${DB_NAME}
       - MONGO=mongo-db
       - OPEN_WEATHER_URL=http://${OPENWEATHER_SERVER_ADDRESS}:${OPENWEATHER_SERVER_PORT}/api/open/current
     networks:
       - weather-network
     ports:
       - ${HOMEWEATHER_SERVER_PORT}:${HOMEWEATHER_SERVER_PORT}
+    depends_on:
+      - mongodb
+      - openweather
+      - apigateway
   openweather:
     container_name: openweather-service
     image: openweather:1.0-SNAPSHOT
     env_file:
       - .env
     environment:
-      - SERVER_PORT=OPENWEATHER_SERVER_PORT
+      - SERVER_PORT=${OPENWEATHER_SERVER_PORT}
       - SERVER_ADDRESS=${OPENWEATHER_SERVER_ADDRESS}
+      - APIGATEWAY_SERVER_PORT=${APIGATEWAY_SERVER_PORT}
+      - APIGATEWAY_SERVER_ADDRESS=${APIGATEWAY_SERVER_ADDRESS}
+      - DB_NAME=${DB_NAME}
       - MONGO=mongo-db
       - appid=${appid}
     networks:
       - weather-network
     ports:
       - ${OPENWEATHER_SERVER_PORT}:${OPENWEATHER_SERVER_PORT}
+    depends_on:
+      - mongodb
+      - apigateway
   smssender:
     container_name: smssender-service
     image: smssender:1.0-SNAPSHOT
@@ -49,25 +62,34 @@ services:
     environment:
       - SERVER_PORT=${SMSSENDER_SERVER_PORT}
       - SERVER_ADDRESS=${SMSSENDER_SERVER_ADDRESS}
+      - APIGATEWAY_SERVER_PORT=${APIGATEWAY_SERVER_PORT}
+      - APIGATEWAY_SERVER_ADDRESS=${APIGATEWAY_SERVER_ADDRESS}
+      - DB_NAME=${DB_NAME}
+      - MONGO=mongo-db
       - ACCOUNT_SID=${ACCOUNT_SID}
       - AUTH_TOKEN=${AUTH_TOKEN}
       - TRIAL_NUMBER=${TRIAL_NUMBER}
       - appid=${appid}
-      - MONGO=mongo-db
     networks:
       - weather-network
     ports:
       - ${SMSSENDER_SERVER_PORT}:${SMSSENDER_SERVER_PORT}
+    depends_on:
+      - mongodb
+      - openweather
+      - apigateway
   apigateway:
     container_name: apigateway-service
     image: apigateway:1.0-SNAPSHOT
     env_file:
       - .env
     environment:
-      - SERVER_PORT:${APIGATEWAY_SERVER_PORT}
-      - SERVER_ADDRESS:${APIGATEWAY_SERVER_ADDRESS}
-      - OPENWEATHER_ROUTE_URI=http://${OPENWEATHER_SERVER_ADDRESS}:${OPENWEATHER_SERVER_PORT}
+#      server
+      - SERVER_PORT=${APIGATEWAY_SERVER_PORT}
+      - SERVER_ADDRESS=${APIGATEWAY_SERVER_ADDRESS}
+#      routes
       - SMSSENDER_ROUTE_URI=http://${SMSSENDER_SERVER_ADDRESS}:${SMSSENDER_SERVER_PORT}
+      - OPENWEATHER_ROUTE_URI=http://${OPENWEATHER_SERVER_ADDRESS}:${OPENWEATHER_SERVER_PORT}
       - HOMEWEATHER_ROUTE_URI=http://${HOMEWEATHER_SERVER_ADDRESS}:${HOMEWEATHER_SERVER_PORT}
     networks:
       - weather-network
@@ -75,5 +97,5 @@ services:
       - ${APIGATEWAY_SERVER_PORT}:${APIGATEWAY_SERVER_PORT}
 networks:
   weather-network:
-    name: "weather-network"
+    name: weather-network
     driver: bridge

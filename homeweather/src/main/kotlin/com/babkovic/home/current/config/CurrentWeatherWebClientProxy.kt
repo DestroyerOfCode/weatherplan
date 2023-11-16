@@ -8,9 +8,9 @@ import org.springframework.web.reactive.function.client.support.WebClientAdapter
 import org.springframework.web.service.invoker.HttpServiceProxyFactory
 
 @Configuration(proxyBeanMethods = false)
-class CurrentWeatherWebClientProxy {
+class HomeWeatherWebClientProxy {
     @Bean
-    fun currentWeatherClient(@Qualifier("currentWeatherWebClient") webClient: WebClient): CurrentWeatherClientService {
+    fun currentWeatherClient(@Qualifier("homeWeatherWebClient") webClient: WebClient): HomeWeatherClientService {
         val factory: HttpServiceProxyFactory =
             HttpServiceProxyFactory.builderFor(
                 WebClientAdapter
@@ -18,6 +18,6 @@ class CurrentWeatherWebClientProxy {
             )
                 .build()
 
-        return factory.createClient(CurrentWeatherClientService::class.java)
+        return factory.createClient(HomeWeatherClientService::class.java)
     }
 }

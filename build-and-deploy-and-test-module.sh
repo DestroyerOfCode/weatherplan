@@ -24,3 +24,7 @@ docker compose down
 docker compose up -d
 
 docker ps
+
+cd ..
+moduleName=$1
+./gradlew "$moduleName:"'test" --continue

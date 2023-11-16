@@ -1,19 +1,27 @@
 package com.babkovic.openweather
 
+import com.babkovic.config.WeatherProperties
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.TestInstance
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.web.server.LocalServerPort
 import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.reactive.server.WebTestClient
 import java.time.Duration
 import java.time.temporal.ChronoUnit.MINUTES
 
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(
+    properties = ["spring.config.location=classpath:application-test.yml"],
+    locations = ["classpath:.env"]
+)
 @ActiveProfiles("test")
 class BaseTest {
 
@@ -27,17 +35,26 @@ class BaseTest {
         protected lateinit var GATEWAY_URL: String
     }
 
-    @Value("\${gateway.port}")
-    protected lateinit var gatewayPort: String
+    @Autowired
+    private lateinit var weatherProperties: WeatherProperties
 
-    @Value("\${server.port}")
+//    @Value("\${weather.gateway.schema}")
+//    private lateinit var gatewaySchema: String
+//
+//    @Value("\${weather.gateway.address}")
+//    private lateinit var gatewayAddress: String
+//
+//    @Value("\${weather.gateway.port}")
+//    private lateinit var gatewayPort: String
+
+    @Value("\${server.tomcat.remoteip.protocol-header-https-value}")
+    private lateinit var serverSchema: String
+
+    @Value("\${server.address}")
+    private lateinit var serverAddress: String
+
+    @LocalServerPort
     private lateinit var serverPort: String
-
-    @Value("\${weather.home-weather.sub-domain}")
-    private lateinit var subDomain: String
-
-    @Value("\${weather.home-weather.schema}")
-    private lateinit var schema: String
 
     protected lateinit var client: WebTestClient
 
@@ -45,19 +62,28 @@ class BaseTest {
     fun initApplication() {
         LOGGER.info(
             """Starting web client:
-            |schema: $schema
-            |sub-domain: $subDomain
-            |server port: $serverPort
+            | Schema: $serverSchema
+            | Address: $serverAddress
+            | Server port: $serverPort
             """.trimMargin()
         )
-        BASE_URL = createBaseURL(serverPort)
-        GATEWAY_URL = createBaseURL(gatewayPort)
+        System.getenv().forEach { LOGGER.info("${it.key}: ${it.value}") }
+
+        BASE_URL = createUrl(serverSchema, serverPort, serverAddress)
+        GATEWAY_URL = createUrl(
+            weatherProperties.gateway.schema,
+            weatherProperties.gateway.port,
+            weatherProperties.gateway.address
+        )
+        LOGGER.info("weatherProperties.gateway.schema: ${weatherProperties.gateway.schema}")
+        LOGGER.info("weatherProperties.gateway.port: ${weatherProperties.gateway.port}")
+        LOGGER.info("weatherProperties.gateway.address: ${weatherProperties.gateway.address}")
         client = WebTestClient.bindToServer().baseUrl(BASE_URL)
             .responseTimeout(Duration.of(1, MINUTES)).build()
     }
 
-    private fun createBaseURL(port: String): String {
-        return "$schema://$subDomain:$port"
+    private fun createUrl(schema: String, port: String, address: String): String {
+        return "$schema://${address}:${port}"
     }
 
 

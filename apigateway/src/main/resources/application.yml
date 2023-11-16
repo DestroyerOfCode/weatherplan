@@ -10,6 +10,8 @@ management:
     gateway:
       enabled: on
 spring:
+  application:
+    name: apigateway
   cloud:
     gateway:
       routes:
@@ -36,5 +38,3 @@ spring:
             - AddResponseHeader=X-Powered-By,Gateway Service
       metrics:
         enabled: on
-  application:
-    name: apigateway

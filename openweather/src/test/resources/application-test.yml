@@ -1,11 +1,14 @@
 server:
-  port: 8080
-weather:
-  home-weather:
-    schema: "http"
-    sub-domain: "localhost"
+  address: localhost
+  tomcat:
+    remoteip:
+      protocol-header-https-value: http
 spring:
   application:
-    name: "openweather-test"
-gateway:
-  port: "8083"
+    name: openweather-test
+weather:
+  open-weather-api-url: https://api.openweathermap.org/data/3.0/onecall
+  gateway:
+    port: 8083
+    address: localhost
+    schema: ${server.tomcat.remoteip.protocol-header-https-value:http}

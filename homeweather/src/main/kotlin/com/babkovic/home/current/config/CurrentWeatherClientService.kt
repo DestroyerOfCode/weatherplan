@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono
 
 @HttpExchange(contentType = MediaType.APPLICATION_NDJSON_VALUE)
 @ResponseBody
-interface CurrentWeatherClientService {
+interface HomeWeatherClientService {
     @GetExchange(accept = [MediaType.APPLICATION_NDJSON_VALUE])
     fun currentWeathers(@NotNull @RequestParam lat: Double, @NotNull @RequestParam lon: Double): Mono<CurrentWeather>
 

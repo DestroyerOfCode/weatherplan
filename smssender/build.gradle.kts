@@ -27,7 +27,6 @@ dependencies {
     implementation(project(":config"))
     implementation(project(":homeweather"))
 
-
     //spring
     implementation(libs.spring.boot.starter)
     implementation(libs.springdoc.openapi.starter.webmvc.ui)
@@ -37,7 +36,7 @@ dependencies {
 
     //testing
     testImplementation(kotlin("test"))
-    testApi(libs.bundles.web.test)
+    testImplementation(libs.bundles.web.test.reactive)
     testImplementation(libs.bundles.testcontainers)
 
     //3rd parties

@@ -19,6 +19,8 @@ class Application {
             LOGGER.info("OPENWEATHER_ROUTE_URI: " + System.getenv("OPENWEATHER_ROUTE_URI"))
             LOGGER.info("SMSSENDER_ROUTE_URI: " + System.getenv("SMSSENDER_ROUTE_URI"))
             LOGGER.info("HOMEWEATHER_ROUTE_URI: " + System.getenv("HOMEWEATHER_ROUTE_URI"))
+            LOGGER.info("SERVER_PORT: " + System.getenv("SERVER_PORT"))
+            LOGGER.info("SERVER_ADDRESS: " + System.getenv("SERVER_ADDRESS"))
             app.run(*args)
         }
     }

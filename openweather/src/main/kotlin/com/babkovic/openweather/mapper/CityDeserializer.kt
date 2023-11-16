@@ -1,7 +1,6 @@
 package com.babkovic.openweather.mapper
 
 import com.babkovic.home.current.exception.CurrentWeatherException
-import com.babkovic.home.current.mapper.CurrentWeatherDeserializer
 import com.babkovic.openweather.model.domain.City
 import com.babkovic.openweather.model.domain.Coord
 import com.fasterxml.jackson.core.JsonParser
@@ -17,7 +16,7 @@ import java.text.ParseException
 class CityDeserializer : JsonDeserializer<City>() {
 
     companion object {
-        private val LOGGER: Logger = LoggerFactory.getLogger(CurrentWeatherDeserializer::class.java)
+        private val LOGGER: Logger = LoggerFactory.getLogger(CityDeserializer::class.java)
     }
 
     override fun deserialize(p: JsonParser, ctxt: DeserializationContext?): City {

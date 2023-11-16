@@ -1,12 +1,23 @@
 server:
-  port: ${SERVER_PORT:8082}
-  address: ${SERVER_ADDRESS:localhost}
-weather:
-  home-weather:
-    schema: "http"
-    sub-domain: "localhost"
+  address: localhost
+  tomcat:
+    remoteip:
+      protocol-header-https-value: http
 spring:
   application:
-    name: "homeweather-test"
-gateway:
-  port: 8083
+    name: homeweather-test
+  data:
+    mongodb:
+      port: 27017
+      username: user
+      password: pass
+      host: ${MONGO:localhost}
+      database: weather
+      authentication-database: admin
+weather:
+  open-weather-api-url: https://api.openweathermap.org/data/3.0/onecall
+  weather-plan-open-url: http://localhost:8080/api/open/current
+  gateway:
+    port: 8083
+    address: localhost
+    schema: ${server.tomcat.remoteip.protocol-header-https-value:http}

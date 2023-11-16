@@ -1,6 +1,6 @@
 package com.babkovic.home.current.service
 
-import com.babkovic.home.current.config.CurrentWeatherClientService
+import com.babkovic.home.current.config.HomeWeatherClientService
 import com.babkovic.home.current.exception.CurrentWeatherException
 import com.babkovic.home.current.model.domain.CurrentWeather
 import com.babkovic.home.current.model.repository.CurrentWeatherRepository
@@ -14,7 +14,7 @@ import reactor.core.scheduler.Schedulers
 
 @CurrentWeatherService
 class CurrentWeatherServiceImpl(
-    @Autowired private val client: CurrentWeatherClientService,
+    @Autowired private val client: HomeWeatherClientService,
     @Autowired private val repository: CurrentWeatherRepository
 ) : ICurrentWeatherService {
 

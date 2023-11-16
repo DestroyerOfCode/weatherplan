@@ -17,7 +17,7 @@ class WebClientConfig(private val properties: WeatherProperties) {
         return WebClient.builder()
     }
 
-    @Bean(name = ["currentWeatherWebClient"])
+    @Bean(name = ["homeWeatherWebClient"])
     fun webClient(builder: WebClient.Builder): WebClient {
         val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.weatherPlanOpenUrl)
 
@@ -35,7 +35,8 @@ class WebClientConfig(private val properties: WeatherProperties) {
 
     @Bean(name = ["twilioWebClient"])
     fun twilioWebClient(webClientBuilder: WebClient.Builder): WebClient {
-        val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl)
+        val componentsBuilder = UriComponentsBuilder.fromHttpUrl(properties.openWeatherApiUrl
+        )
             .queryParam(Constants.APP_ID, System.getenv("appid"))
         val webClient = webClientBuilder.uriBuilderFactory(
             DefaultUriBuilderFactory(componentsBuilder)

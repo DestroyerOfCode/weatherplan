@@ -39,3 +39,6 @@ bin/
 .DS_Store
 
 setup/.env
+smssender/src/test/resources/.env
+openweather/src/test/resources/.env
+homeweather/src/test/resources/.env
