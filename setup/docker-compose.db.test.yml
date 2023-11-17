@@ -1,0 +1,19 @@
+version: '3.8'
+networks:
+  weather-db-network:
+    external:
+      name: weather-network
+services:
+  mongo-test-db:
+    container_name: mongo-test-db-service
+    image: mongodb/mongodb-community-server:6.0.4-ubi8
+    restart: always
+    env_file:
+      - .env.db.test
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pass
+    networks:
+      - weather-db-network
+    ports:
+      - "27018:27017"

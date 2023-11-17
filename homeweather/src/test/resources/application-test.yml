@@ -8,10 +8,10 @@ spring:
     name: homeweather-test
   data:
     mongodb:
-      port: 27017
+      port: 27018
       username: user
       password: pass
-      host: ${MONGO:localhost}
+      host: localhost
       database: weather
       authentication-database: admin
 weather:

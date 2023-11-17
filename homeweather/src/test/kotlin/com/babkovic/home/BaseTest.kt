@@ -27,7 +27,6 @@ import java.time.temporal.ChronoUnit.MINUTES
     locations = ["classpath:.env"]
 )
 @ActiveProfiles("test")
-//@Testcontainers
 class BaseTest {
 
     companion object {
@@ -38,19 +37,7 @@ class BaseTest {
 
         @JvmStatic
         protected lateinit var GATEWAY_URL: String
-
-//        @ServiceConnection
-//        var mongoDBContainer = MongoDBContainer(DockerImageName.parse("mongo:7"))
     }
-
-    /**
-     * If you try to start the container with @Container, it won`t start, hence taking the lifecycle
-     * to your own hands solves the issue.
-     * Moreover, if you try to start web environment on random port, the client won`t load correctly
-     */
-//    init {
-//        mongoDBContainer.start()
-//    }
 
     @Autowired
     private lateinit var weatherProperties: WeatherProperties

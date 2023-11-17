@@ -18,9 +18,10 @@ cd ~/development/weatherplan/
 cd ~/development/weatherplan/setup
 
 # Run docker compose down
-docker compose down
+docker compose -f docker-compose.test.yml down
+docker network rm weather-network
 
 # Run docker compose up -d
-docker compose up -d
+docker compose -f docker-compose.test.yml --env-file .env.test -f docker-compose.yml --env-file .env --env-file .env.test up -d
 
 docker ps

@@ -22,5 +22,6 @@ cd $project_dir
 cd $project_dir/setup
 
 # Run Docker Compose
-docker compose up $module_name -d
+docker compose -f docker-compose.test.yml down
+docker compose -f docker-compose.test.yml --env-file .env.test -f docker-compose.yml --env-file .env up
 

@@ -6,6 +6,14 @@ server:
 spring:
   application:
     name: smssender
+  data:
+    mongodb:
+      port: 27018
+      username: user
+      password: pass
+      host: localhost
+      database: localhost
+      authentication-database: admin
 twilio:
   twilio:
     accountSid: ${ACCOUNT_SID}
