@@ -1,7 +1,7 @@
 package com.babkovic.openweather.controller
 
-import com.babkovic.BaseTest
-import com.babkovic.current.model.domain.CurrentWeather
+import com.babkovic.home.current.model.domain.CurrentWeather
+import com.babkovic.openweather.BaseTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInfo
 import org.slf4j.Logger
@@ -23,7 +23,7 @@ class OpenWeatherControllerIT : BaseTest() {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         //given and when
-        val url = "$BASE_URL/open/current?lat=49.136372&lon=20.24386"
+        val url = "$GATEWAY_URL/open/current?lat=49.136372&lon=20.24386"
         val resultFlux: FluxExchangeResult<CurrentWeather> = callCurrentWeatherFlux(url)
 
         //then
@@ -48,7 +48,7 @@ class OpenWeatherControllerIT : BaseTest() {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
 
         //given and when
-        val url = "$BASE_URL/open/current/all"
+        val url = "$GATEWAY_URL/open/current/all"
         val resFlux: FluxExchangeResult<CurrentWeather> = callCurrentWeatherFlux(url)
 
         //then

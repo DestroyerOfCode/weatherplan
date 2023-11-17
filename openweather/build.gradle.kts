@@ -34,7 +34,7 @@ dependencies {
 
     //testing
     testImplementation(kotlin("test"))
-    testApi(libs.bundles.web.test)
+    testApi(libs.bundles.web.test.reactive)
     testImplementation(libs.bundles.testcontainers)
 }
 

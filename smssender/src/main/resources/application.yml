@@ -1,0 +1,27 @@
+server:
+  port: ${SERVER_PORT}
+  address: ${SERVER_ADDRESS}
+  tomcat:
+    remoteip:
+      protocol-header-https-value: http
+spring:
+  application:
+    name: smssender
+  data:
+    mongodb:
+      port: 27017
+      username: user
+      password: pass
+      host: ${MONGO}
+      database: ${DB_NAME}
+      authentication-database: admin
+twilio:
+  twilio:
+    accountSid: ${ACCOUNT_SID}
+    authToken: ${AUTH_TOKEN}
+    trialNumber: ${TRIAL_NUMBER}
+weather:
+  gateway:
+    port: ${APIGATEWAY_SERVER_PORT}
+    address: ${APIGATEWAY_SERVER_ADDRESS}
+    schema: ${server.tomcat.remoteip.protocol-header-https-value}

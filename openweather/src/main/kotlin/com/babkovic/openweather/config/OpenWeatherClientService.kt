@@ -1,6 +1,6 @@
 package com.babkovic.openweather.config
 
-import com.babkovic.current.model.domain.CurrentWeather
+import com.babkovic.home.current.model.domain.CurrentWeather
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.ResponseBody

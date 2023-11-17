@@ -1,0 +1,28 @@
+server:
+  address: localhost
+  tomcat:
+    remoteip:
+      protocol-header-https-value: http
+spring:
+  application:
+    name: smssender
+  data:
+    mongodb:
+      port: 27018
+      username: user
+      password: pass
+      host: localhost
+      database: localhost
+      authentication-database: admin
+twilio:
+  twilio:
+    accountSid: ${ACCOUNT_SID}
+    authToken: ${AUTH_TOKEN}
+    trialNumber: ${TRIAL_NUMBER}
+weather:
+  open-weather-api-url: https://api.openweathermap.org/data/3.0/onecall
+  weather-plan-home-url: ${server.tomcat.remoteip.protocol-header-https-value}://localhost:8083/open/current
+  gateway:
+    port: 8083
+    address: localhost
+    schema: ${server.tomcat.remoteip.protocol-header-https-value:http}

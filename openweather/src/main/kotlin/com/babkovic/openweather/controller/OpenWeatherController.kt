@@ -1,6 +1,6 @@
 package com.babkovic.openweather.controller
 
-import com.babkovic.current.model.domain.CurrentWeather
+import com.babkovic.home.current.model.domain.CurrentWeather
 import org.jetbrains.annotations.NotNull
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono
  * The actual HTTP request lasts during the whole duration
  * This is NOT a webhook
  */
-@RequestMapping("/open/current", produces = [MediaType.APPLICATION_NDJSON_VALUE])
+@RequestMapping("/api/open/current", produces = [MediaType.APPLICATION_NDJSON_VALUE])
 @ResponseBody
 interface OpenWeatherController {
 
@@ -25,11 +25,12 @@ interface OpenWeatherController {
     fun test(): ResponseEntity<String>
 
     @GetMapping("/all")
-    fun getCurrentWeatherFromOpenWeatherByCityIds(): ResponseEntity<Flux<CurrentWeather>>
+    fun getCurrentWeatherFromOpenWeather(): ResponseEntity<Flux<CurrentWeather>>
 
     @GetMapping
-    fun getCurrentWeatherFromOpenWeatherByCityId(
+    fun getCurrentWeatherFromOpenWeatherByCoords(
         @NotNull @RequestParam lat: Double,
         @NotNull @RequestParam lon: Double
     ): ResponseEntity<Mono<CurrentWeather>>
+
 }

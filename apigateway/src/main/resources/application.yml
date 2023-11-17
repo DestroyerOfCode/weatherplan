@@ -1,0 +1,40 @@
+server:
+  port: ${SERVER_PORT}
+  address: ${SERVER_ADDRESS}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: on
+spring:
+  application:
+    name: apigateway
+  cloud:
+    gateway:
+      routes:
+        - id: smssender-route
+          uri: ${SMSSENDER_ROUTE_URI}
+          predicates:
+            - Path=/twilio/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By,Gateway Service
+        - id: openweather-route
+          uri: ${OPENWEATHER_ROUTE_URI}
+          predicates:
+            - Path=/open/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By,Gateway Service
+        - id: homeweather-route
+          uri: ${HOMEWEATHER_ROUTE_URI}
+          predicates:
+            - Path=/home/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=X-Powered-By,Gateway Service
+      metrics:
+        enabled: on

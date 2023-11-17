@@ -37,3 +37,9 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+setup/dev/.env
+smssender/src/test/resources/.env
+openweather/src/test/resources/.env
+homeweather/src/test/resources/.env
+.test.env
