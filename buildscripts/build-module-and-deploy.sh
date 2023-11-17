@@ -19,9 +19,9 @@ cd $project_dir
 ./gradlew "$module_name"':bootBuildImage'
 
 # Change to the setup directory
-cd $project_dir/setup
+cd $project_dir/setup/dev
 
 # Run Docker Compose
-docker compose -f docker-compose.test.yml down
-docker compose -f docker-compose.test.yml --env-file .env.test -f docker-compose.yml --env-file .env up
+docker compose down
+docker compose up -d
 

@@ -15,13 +15,13 @@ cd ~/development/weatherplan/
 ./gradlew smssender:bootBuildImage homeweather:bootBuildImage apigateway:bootBuildImage openweather:bootBuildImage --parallel
 
 # Change to the directory ~/development/weatherplan/setup
-cd ~/development/weatherplan/setup
+cd ~/development/weatherplan/setup/dev/
 
 # Run docker compose down
-docker compose -f docker-compose.test.yml down
+docker compose down
 docker network rm weather-network
 
 # Run docker compose up -d
-docker compose -f docker-compose.test.yml --env-file .env.test -f docker-compose.yml --env-file .env --env-file .env.test up -d
+docker compose up -d
 
 docker ps

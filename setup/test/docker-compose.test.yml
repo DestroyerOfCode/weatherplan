@@ -1,83 +1,103 @@
 version: '3.8'
 networks:
-  weather-network:
-    name: weather-network
+  weather-network-test:
+    name: weather-network-test
     driver: bridge
 services:
-  homeweather:
-    container_name: homeweather-service
+  mongo-db-test:
+    container_name: mongo-db-test-service
+    image: mongodb/mongodb-community-server:6.0.4-ubi8
+    restart: always
+    env_file:
+      - .test.env
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    networks:
+      - weather-network-test
+    ports:
+      - ${MONGODB_SERVER_PORT}:27017
+  homeweather-test:
+    container_name: homeweather-test-service
     image: homeweather:1.0-SNAPSHOT
     env_file:
-      - .env.db.test
-      - .env
+      - .test.env
     environment:
+#     server
       - SERVER_PORT=${HOMEWEATHER_SERVER_PORT}
       - SERVER_ADDRESS=${HOMEWEATHER_SERVER_ADDRESS}
+#     apigateway
       - APIGATEWAY_SERVER_PORT=${APIGATEWAY_SERVER_PORT}
       - APIGATEWAY_SERVER_ADDRESS=${APIGATEWAY_SERVER_ADDRESS}
+#     db
       - DB_NAME=${DB_NAME}
-      - MONGO=${MONGO_SERVICE}
+      - MONGO=mongo-db-test
+#     routes
       - OPEN_WEATHER_URL=http://${OPENWEATHER_SERVER_ADDRESS}:${OPENWEATHER_SERVER_PORT}/api/open/current
     networks:
-      - weather-network
+      - weather-network-test
     ports:
       - ${HOMEWEATHER_SERVER_PORT}:${HOMEWEATHER_SERVER_PORT}
     depends_on:
-      - ${MONGO_SERVICE}
-      - openweather
-      - apigateway
-  openweather:
-    container_name: openweather-service
+      - mongo-db-test
+      - openweather-test
+      - apigateway-test
+  openweather-test:
+    container_name: openweather-test-service
     image: openweather:1.0-SNAPSHOT
     env_file:
-      - .env.db.test
-      - .env
+      - ../dev/.env
     environment:
+#     server
       - SERVER_PORT=${OPENWEATHER_SERVER_PORT}
       - SERVER_ADDRESS=${OPENWEATHER_SERVER_ADDRESS}
+#     apigateway
       - APIGATEWAY_SERVER_PORT=${APIGATEWAY_SERVER_PORT}
       - APIGATEWAY_SERVER_ADDRESS=${APIGATEWAY_SERVER_ADDRESS}
+#     db
       - DB_NAME=${DB_NAME}
-      - MONGO=${MONGO_SERVICE}
-      - appid=${APPID}
+      - MONGO=mongo-db-test
+      - appid=${OPENWEATHERMAP_APPID}
     networks:
-      - weather-network
+      - weather-network-test
     ports:
       - ${OPENWEATHER_SERVER_PORT}:${OPENWEATHER_SERVER_PORT}
     depends_on:
-      - ${MONGO_SERVICE}
-      - apigateway
-  smssender:
-    container_name: smssender-service
+      - mongo-db-test
+      - apigateway-test
+  smssender-test:
+    container_name: smssender-test-service
     image: smssender:1.0-SNAPSHOT
     env_file:
-      - .env.db.test
-      - .env
+      - .test.env
     environment:
+#     server
       - SERVER_PORT=${SMSSENDER_SERVER_PORT}
       - SERVER_ADDRESS=${SMSSENDER_SERVER_ADDRESS}
+#     apigateway
       - APIGATEWAY_SERVER_PORT=${APIGATEWAY_SERVER_PORT}
       - APIGATEWAY_SERVER_ADDRESS=${APIGATEWAY_SERVER_ADDRESS}
+#     db
       - DB_NAME=${DB_NAME}
-      - MONGO=${MONGO_SERVICE}
+      - MONGO=mongo-db-test
+#     twilio
       - ACCOUNT_SID=${ACCOUNT_SID}
       - AUTH_TOKEN=${AUTH_TOKEN}
       - TRIAL_NUMBER=${TRIAL_NUMBER}
-      - appid=${APPID}
+      - appid=${OPENWEATHERMAP_APPID}
     networks:
-      - weather-network
+      - weather-network-test
     ports:
       - ${SMSSENDER_SERVER_PORT}:${SMSSENDER_SERVER_PORT}
     depends_on:
-      - ${MONGO_SERVICE}
-      - openweather
-      - apigateway
-  apigateway:
-    container_name: apigateway-service
+      - mongo-db-test
+      - openweather-test
+      - apigateway-test
+  apigateway-test:
+    container_name: apigateway-test-service
     image: apigateway:1.0-SNAPSHOT
     env_file:
-      - .env.db.test
-      - .env
+      - .test.env
     environment:
 #      server
       - SERVER_PORT=${APIGATEWAY_SERVER_PORT}
@@ -87,6 +107,6 @@ services:
       - OPENWEATHER_ROUTE_URI=http://${OPENWEATHER_SERVER_ADDRESS}:${OPENWEATHER_SERVER_PORT}
       - HOMEWEATHER_ROUTE_URI=http://${HOMEWEATHER_SERVER_ADDRESS}:${HOMEWEATHER_SERVER_PORT}
     networks:
-      - weather-network
+      - weather-network-test
     ports:
       - ${APIGATEWAY_SERVER_PORT}:${APIGATEWAY_SERVER_PORT}
