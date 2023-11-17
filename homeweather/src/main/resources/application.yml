@@ -1,6 +1,6 @@
 server:
-  port: ${SERVER_PORT:8081}
-  address: ${SERVER_ADDRESS:localhost}
+  port: ${SERVER_PORT}
+  address: ${SERVER_ADDRESS}
   tomcat:
     remoteip:
       protocol-header-https-value: http
@@ -12,9 +12,9 @@ spring:
       port: 27017
       username: user
       password: pass
-      host: ${MONGO:localhost}
+      host: ${MONGO}
       database: weather
       authentication-database: admin
 weather:
   open-weather-api-url: https://api.openweathermap.org/data/3.0/onecall
-  weather-plan-open-url: ${OPEN_WEATHER_URL:http://localhost:8080/api/open/current}
+  weather-plan-open-url: ${OPEN_WEATHER_URL}

@@ -9,13 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.server.LocalServerPort
-import org.springframework.boot.testcontainers.service.connection.ServiceConnection
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.TestPropertySource
 import org.springframework.test.web.reactive.server.WebTestClient
-import org.testcontainers.containers.MongoDBContainer
-import org.testcontainers.junit.jupiter.Testcontainers
-import org.testcontainers.utility.DockerImageName
 import java.time.Duration
 import java.time.temporal.ChronoUnit.MINUTES
 
@@ -24,7 +20,6 @@ import java.time.temporal.ChronoUnit.MINUTES
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(
     properties = ["spring.config.location=classpath:application-test.yml"],
-    locations = ["classpath:.env"]
 )
 @ActiveProfiles("test")
 class BaseTest {

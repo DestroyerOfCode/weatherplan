@@ -16,7 +16,6 @@ spring:
       authentication-database: admin
 weather:
   open-weather-api-url: https://api.openweathermap.org/data/3.0/onecall
-  weather-plan-open-url: http://localhost:8080/api/open/current
   gateway:
     port: 8083
     address: localhost

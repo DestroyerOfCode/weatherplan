@@ -84,7 +84,6 @@ services:
       - ACCOUNT_SID=${ACCOUNT_SID}
       - AUTH_TOKEN=${AUTH_TOKEN}
       - TRIAL_NUMBER=${TRIAL_NUMBER}
-      - appid=${OPENWEATHERMAP_APPID}
     networks:
       - weather-network-test
     ports:

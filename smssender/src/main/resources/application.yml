@@ -1,6 +1,6 @@
 server:
-  port: ${SERVER_PORT:8081}
-  address: ${SERVER_ADDRESS:localhost}
+  port: ${SERVER_PORT}
+  address: ${SERVER_ADDRESS}
   tomcat:
     remoteip:
       protocol-header-https-value: http
@@ -12,7 +12,7 @@ spring:
       port: 27017
       username: user
       password: pass
-      host: ${MONGO:localhost}
+      host: ${MONGO}
       database: ${DB_NAME}
       authentication-database: admin
 twilio:

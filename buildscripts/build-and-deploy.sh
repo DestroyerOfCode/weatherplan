@@ -19,7 +19,6 @@ cd ~/development/weatherplan/setup/dev/
 
 # Run docker compose down
 docker compose down
-docker network rm weather-network
 
 # Run docker compose up -d
 docker compose up -d

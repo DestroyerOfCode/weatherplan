@@ -20,7 +20,6 @@ import java.time.temporal.ChronoUnit.MINUTES
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(
     properties = ["spring.config.location=classpath:application-test.yml"],
-    locations = ["classpath:.env"]
 )
 @ActiveProfiles("test")
 class BaseTest {

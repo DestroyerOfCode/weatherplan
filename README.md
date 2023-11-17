@@ -1,19 +1,17 @@
-To start the app, ensure that Java 21 is installed on the classpath and run:
+To start the app, ensure that Java 21 is installed on the classpath
+
+To run the required containers run:
 
 ```bash
-./gradlew clean build -Pappid={api key} bootRun
+./buildscripts/build-and-deploy.sh
 ```
+**Note that you must have your environment variables set up in order for the containers to start successfully
 
 To run tests:
 
 ```bash
-appid={api key} ./gradlew clean build
-```
-
-To make changes:
-
-```zsh
-./build-and-deploy
+./buildscripts/build-and-deploy-test.sh
+./gradlew test --continue
 ```
 
 The service consists of 3 modules: Homeweather, Openweather, and Config.
