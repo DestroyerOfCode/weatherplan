@@ -2,26 +2,34 @@
 #kotlin
 io-projectreactor = "3.5.10"
 io-projectreactor-kotlin = "1.2.2"
-org-jetbrains-kotlin = "1.9.20-RC"
+org-jetbrains-kotlin = "1.9.21"
 org-jetbrains-kotlinx = "1.7.3"
 
 #spring
-org-springframework-boot = "3.2.0-M3"
+org-springframework-boot = "3.2.0"
 org-springdoc = "2.2.0"
+org-springframework-cloud = "4.1.0-RC1"
+org-springframework-cloud-deps = "2023.0.0-RC1"
 
 #testcontainers
 org-testcontainers = "1.19.1"
 
+#logging
+ch-qos-logback = "1.4.11"
+org-slf4j = "2.0.6"
+
 #business logic
 org-modelmapper = "3.1.1"
-org-slf4j = "2.0.6"
 org-yaml = "2.2"
 
 #testing
-org-junit-jupiter = "5.10.0"
-org-mockito = "5.0.0"
-spring-test = "6.1.0-M5"
+org-junit-jupiter = "5.10.1"
+org-mockito = "5.7.0"
+spring-test = "6.1.1"
 com-fasterxml-jackson-core = "2.15.2"
+
+#3rd parties
+com-twilio-sdk = "10.0.0-rc.5"
 
 [libraries]
 #kotlin
@@ -32,13 +40,17 @@ kotlinx-coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 #spring
 spring-boot-dependencies = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "org-springframework-boot" }
+spring-cloud-dependencies = { group = "org.springframework.cloud", name = "spring-cloud-dependencies", version.ref = "org-springframework-cloud-deps" }
 spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
 spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-actuator = { group = "org.springframework.boot", name = "spring-boot-starter-actuator" }
 spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
 spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux" }
 spring-boot-starter-data-mongodb-reactive = { group = "org.springframework.boot", name = "spring-boot-starter-data-mongodb-reactive" }
 spring-boot-testcontainers = { group = "org.springframework.boot", name = "spring-boot-testcontainers" }
 springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "org-springdoc" }
+spring-cloud-gateway = { group = "org.springframework.cloud", name = "spring-cloud-gateway", version.ref = "org-springframework-cloud" }
+spring-cloud-starter-gateway = { group = "org.springframework.cloud", name = "spring-cloud-starter-gateway", version.ref = "org-springframework-cloud" }
 
 #testcontainers
 testcontainers-junit-jupiter = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "org-testcontainers" }
@@ -52,6 +64,7 @@ jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-datab
 
 #logging
 slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "org-slf4j" }
+logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "ch-qos-logback" }
 
 #testing
 junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "org-junit-jupiter" }
@@ -59,7 +72,11 @@ mockito = { group = "org.mockito", name = "mockito-core", version.ref = "org-moc
 spring-test = { group = "org.springframework", name = "spring-test", version.ref = "spring-test" }
 reactor-test = { group = "io.projectreactor", name = "reactor-test", version.ref = "io-projectreactor" }
 
+#3rd parties
+twilio = { group = "com.twilio.sdk", name = "twilio", version.ref = "com-twilio-sdk" }
+
 [bundles]
-web-test = ["junit-jupiter", "mockito", "spring-test", "spring-boot-starter-test", "reactor-test"]
+web-test = ["junit-jupiter", "mockito", "spring-test", "spring-boot-starter-test"]
+web-test-reactive = ["junit-jupiter", "mockito", "spring-test", "spring-boot-starter-test", "reactor-test"]
 testcontainers = ["spring-boot-testcontainers", "testcontainers-junit-jupiter", "testcontainers-testcontainers", "testcontainers-mongodb"]
 logging = ["slf4j-api"]

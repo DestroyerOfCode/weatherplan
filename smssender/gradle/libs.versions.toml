@@ -1,0 +1,66 @@
+[versions]
+#kotlin
+io-projectreactor = "3.5.10"
+io-projectreactor-kotlin = "1.2.2"
+org-jetbrains-kotlin = "1.9.20-RC"
+org-jetbrains-kotlinx = "1.7.3"
+
+#spring
+org-springframework-boot = "3.2.0-RC2"
+org-springdoc = "2.2.0"
+
+#testcontainers
+org-testcontainers = "1.19.1"
+
+#business logic
+org-modelmapper = "3.1.1"
+org-slf4j = "2.0.6"
+org-yaml = "2.2"
+
+#testing
+org-junit-jupiter = "5.10.0"
+org-mockito = "5.0.0"
+spring-test = "6.1.0-M5"
+com-fasterxml-jackson-core = "2.15.2"
+
+[libraries]
+#kotlin
+reactor-kotlin-extensions = { group = "io.projectreactor.kotlin", name = "reactor-kotlin-extensions", version.ref = "io-projectreactor-kotlin" }
+kotlin-reflect = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "org-jetbrains-kotlin" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "org-jetbrains-kotlin" }
+kotlinx-coroutines-reactor = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-reactor", version.ref = "org-jetbrains-kotlinx" }
+
+#spring
+spring-boot-dependencies = { group = "org.springframework.boot", name = "spring-boot-dependencies", version.ref = "org-springframework-boot" }
+spring-boot-starter = { group = "org.springframework.boot", name = "spring-boot-starter" }
+spring-boot-starter-web = { group = "org.springframework.boot", name = "spring-boot-starter-web" }
+spring-boot-starter-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+spring-boot-starter-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux" }
+spring-boot-starter-data-mongodb-reactive = { group = "org.springframework.boot", name = "spring-boot-starter-data-mongodb-reactive" }
+spring-boot-testcontainers = { group = "org.springframework.boot", name = "spring-boot-testcontainers" }
+springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "org-springdoc" }
+
+#testcontainers
+testcontainers-junit-jupiter = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "org-testcontainers" }
+testcontainers-testcontainers = { group = "org.testcontainers", name = "testcontainers", version.ref = "org-testcontainers" }
+testcontainers-mongodb = { group = "org.testcontainers", name = "mongodb", version.ref = "org-testcontainers" }
+
+#business logic
+modelmapper = { group = "org.modelmapper", name = "modelmapper", version.ref = "org-modelmapper" }
+org-yaml = { group = "org.yaml", name = "snakeyaml", version.ref = "org-yaml" }
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "com-fasterxml-jackson-core" }
+
+#logging
+slf4j-api = { group = "org.slf4j", name = "slf4j-api", version.ref = "org-slf4j" }
+
+#testing
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version.ref = "org-junit-jupiter" }
+mockito = { group = "org.mockito", name = "mockito-core", version.ref = "org-mockito" }
+spring-test = { group = "org.springframework", name = "spring-test", version.ref = "spring-test" }
+reactor-test = { group = "io.projectreactor", name = "reactor-test", version.ref = "io-projectreactor" }
+
+[bundles]
+web-test = ["junit-jupiter", "mockito", "spring-test", "spring-boot-starter-test"]
+web-test-reactive = ["junit-jupiter", "mockito", "spring-test", "spring-boot-starter-test", "reactor-test"]
+testcontainers = ["spring-boot-testcontainers", "testcontainers-junit-jupiter", "testcontainers-testcontainers", "testcontainers-mongodb"]
+logging = ["slf4j-api"]

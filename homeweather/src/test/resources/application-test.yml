@@ -1,0 +1,22 @@
+server:
+  address: localhost
+  tomcat:
+    remoteip:
+      protocol-header-https-value: http
+spring:
+  application:
+    name: homeweather-test
+  data:
+    mongodb:
+      port: 27018
+      username: user
+      password: pass
+      host: localhost
+      database: weather
+      authentication-database: admin
+weather:
+  open-weather-api-url: https://api.openweathermap.org/data/3.0/onecall
+  gateway:
+    port: 8083
+    address: localhost
+    schema: ${server.tomcat.remoteip.protocol-header-https-value:http}
