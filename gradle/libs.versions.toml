@@ -2,11 +2,11 @@
 #kotlin
 io-projectreactor = "3.5.10"
 io-projectreactor-kotlin = "1.2.2"
-org-jetbrains-kotlin = "1.9.20-RC"
+org-jetbrains-kotlin = "1.9.21"
 org-jetbrains-kotlinx = "1.7.3"
 
 #spring
-org-springframework-boot = "3.2.0-RC2"
+org-springframework-boot = "3.2.0"
 org-springdoc = "2.2.0"
 org-springframework-cloud = "4.1.0-RC1"
 org-springframework-cloud-deps = "2023.0.0-RC1"
@@ -23,9 +23,9 @@ org-modelmapper = "3.1.1"
 org-yaml = "2.2"
 
 #testing
-org-junit-jupiter = "5.10.0"
-org-mockito = "5.0.0"
-spring-test = "6.1.0-M5"
+org-junit-jupiter = "5.10.1"
+org-mockito = "5.7.0"
+spring-test = "6.1.1"
 com-fasterxml-jackson-core = "2.15.2"
 
 #3rd parties
