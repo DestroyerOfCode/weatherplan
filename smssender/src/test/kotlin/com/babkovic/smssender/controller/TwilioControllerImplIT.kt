@@ -39,11 +39,6 @@ class TwilioControllerImplIT : BaseTest() {
         userRepository.insert(User(ObjectId.get(), "Zbigniew", "+421950898744", "admin", Coord(10.2, 12.3))).subscribe()
     }
 
-    @AfterAll
-    fun cleanUp() {
-        userRepository.deleteAll().subscribe()
-    }
-
     @Test
     fun `should get current weather of user and send sms if active`(testInfo: TestInfo) {
         LOGGER.info("Starting test ${testInfo.displayName}\n")
