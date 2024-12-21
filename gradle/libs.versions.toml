@@ -1,35 +1,35 @@
 [versions]
 #kotlin
-io-projectreactor = "3.5.10"
-io-projectreactor-kotlin = "1.2.2"
-org-jetbrains-kotlin = "1.9.22"
-org-jetbrains-kotlinx = "1.7.3"
+io-projectreactor = "3.7.1"
+io-projectreactor-kotlin = "1.2.3"
+org-jetbrains-kotlin = "2.1.0"
+org-jetbrains-kotlinx = "1.10.0"
 
 #spring
-org-springframework-boot = "3.2.1"
-org-springdoc = "2.2.0"
-org-springframework-cloud = "4.1.1"
-org-springframework-cloud-deps = "2023.0.0"
+org-springframework-boot = "3.4.1"
+org-springdoc = "2.7.0"
+org-springframework-cloud = "4.2.0"
+org-springframework-cloud-deps = "2024.0.0"
 
 #testcontainers
-org-testcontainers = "1.19.3"
+org-testcontainers = "1.20.4"
 
 #logging
-ch-qos-logback = "1.4.14"
-org-slf4j = "2.0.10"
+ch-qos-logback = "1.5.13"
+org-slf4j = "2.0.16"
 
 #business logic
-org-modelmapper = "3.2.0"
-org-yaml = "2.2"
+org-modelmapper = "3.2.2"
+org-yaml = "2.3"
 
 #testing
-org-junit-jupiter = "5.10.1"
-org-mockito = "5.8.0"
-spring-test = "6.1.2"
-com-fasterxml-jackson-core = "2.16.1"
+org-junit-jupiter = "5.10.3"
+org-mockito = "5.14.2"
+spring-test = "6.2.1"
+com-fasterxml-jackson-core = "2.18.2"
 
 #3rd parties
-com-twilio-sdk = "10.0.0-rc.6"
+com-twilio-sdk = "10.6.4"
 
 [libraries]
 #kotlin
